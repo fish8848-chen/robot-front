@@ -29,13 +29,13 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
+    redirect: '/strategy/list',
+    name: 'Strategy',
     hidden: true,
     children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: '控制面板' }
+      path: 'list',
+      component: () => import('@/views/strategy/list'),
+      meta: { title: '我的策略' }
     }]
   },
   {
@@ -49,12 +49,13 @@ export const constantRouterMap = [
         component: () => import('@/views/strategy/index'),
         meta: { title: '简单策略', icon: 'table' }
       },
+      // {
+      //   path: 'indicator',
+      //   name: 'Indicator',
+      //   component: () => import('@/views/strategy/indicator'),
+      //   meta: { title: '指标策略', icon: 'tree' }
+      // },
       {
-        path: 'indicator',
-        name: 'Indicator',
-        component: () => import('@/views/strategy/indicator'),
-        meta: { title: '指标策略', icon: 'tree' }
-      }, {
         path: 'list',
         name: 'List',
         component: () => import('@/views/strategy/list'),
@@ -99,12 +100,14 @@ export const constantRouterMap = [
         name: 'Index',
         component: () => import('@/views/account/index'),
         meta: { title: 'api配置', icon: 'table' }
-      }, {
-        path: 'email',
-        name: 'Email',
-        component: () => import('@/views/account/email'),
-        meta: { title: '邮件配置', icon: 'email' }
-      }, {
+      },
+      // {
+      //   path: 'email',
+      //   name: 'Email',
+      //   component: () => import('@/views/account/email'),
+      //   meta: { title: '邮件配置', icon: 'email' }
+      // },
+      {
         path: 'info',
         name: 'Info',
         hidden: true,

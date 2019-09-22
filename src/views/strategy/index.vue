@@ -73,8 +73,50 @@
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="N档做市" name="second">
-        <el-form ref="setting1" :model="setting1" label-width="120px">
-          <el-form-item label="买入:">
+        <el-form ref="ngears" :model="ngears" label-width="120px" :rules="makeMarketRules">
+		  <el-form-item label="买卖挡位:">
+			<el-row>
+			  <el-input-number v-model="ngears.sellTests" :min="1" :max="1000"></el-input-number>
+			</el-row>
+		  </el-form-item>
+		  
+		  <el-form-item label="盘口停留时间:">
+			<el-row>
+			  <el-col>
+			    <el-input-number v-model="ngears.residenceTimeStart" :min="1" :max="1000"></el-input-number>
+				<span>—</span>
+				<el-input-number v-model="ngears.residenceTimeEnd" :min="1" :max="1000"></el-input-number>
+			  </el-col>
+			</el-row>
+		  </el-form-item>
+		  
+		  <el-form-item label="委托单数:">
+			<el-row>
+			  <el-col>
+			    <el-input-number v-model="ngears.entrustSingularStart" :min="1" :max="1000"></el-input-number>
+				<span>—</span>
+				<el-input-number v-model="ngears.entrustSingularEnd" :min="1" :max="1000"></el-input-number>
+			  </el-col>
+			</el-row>
+		  </el-form-item>
+		  
+		  <el-form-item label="买比值:">
+			<el-row>
+			  <el-col :span="5">
+			    <el-input v-model="ngears.buyRatio"></el-input>
+			  </el-col>
+			</el-row>
+		  </el-form-item>
+		  
+		  <el-form-item label="卖比值:">
+			<el-row>
+			  <el-col :span="5">
+			    <el-input v-model="ngears.sellRatio"></el-input>
+			  </el-col>
+			</el-row>
+		  </el-form-item>
+		
+          <!-- <el-form-item label="买入1:">
             <el-tag type="success">购买订单20位</el-tag>
             <el-row class="grid-content">
               <el-col>
@@ -114,7 +156,7 @@
                 <el-input-number v-model="setting1.sellWeights" :min="0" :max="1000"></el-input-number>
               </el-row>
             </el-form-item>
-          </el-form-item>
+          </el-form-item> -->
         </el-form>
       </el-tab-pane>
 
@@ -458,11 +500,21 @@ export default {
         isLimitPrice: true,
         buyQuotaPrice: ""
       },
+	  ngears: {
+		sellTests: 1,
+		residenceTimeStart: 1,
+		residenceTimeEnd: 10,
+		entrustSingularStart: 1,
+		entrustSingularEnd: 10,
+		buyRatio: 1,
+		sellRatio: 1,
+	  },
       setting1: {
         buyOrdersUsdt: "",
         sellOrdersUsdt: "",
         buyWeights: 0,
-        sellWeights: 0
+        sellWeights: 0,
+		sellTests: 1,
       },
       setting2: {
         buyOrderUsdt: "",
