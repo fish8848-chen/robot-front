@@ -5,8 +5,14 @@
         <el-form ref="base" :model="baseInfo" label-width="140px">
           <el-form-item label="策略名称:">
             <el-col :span="6">
-              <el-input v-model="baseInfo.strategyName" placeholder="名称为了辨别策略,最好不要起重复的名称"/>
+              <el-input v-model="baseInfo.strategyName" placeholder="请不要些重名"/>
             </el-col>
+          </el-form-item>
+
+          <el-form-item label="周期时间:">
+            <el-row>
+              <el-input-number v-model="baseInfo.sleep" :min="0" :max="1000"></el-input-number>
+            </el-row>
           </el-form-item>
 
 
@@ -73,49 +79,63 @@
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="N档做市" name="second">
-        <el-form ref="ngears" :model="ngears" label-width="120px" :rules="makeMarketRules">
+        <el-form ref="ngears" :model="setting1" label-width="120px" :rules="makeMarketRules">
+      <el-form-item label="是否开启:">
+        <el-switch
+          v-model="setting1.able"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          active-text="开启"
+          inactive-text="关闭"
+        ></el-switch>
+      </el-form-item>
+
 		  <el-form-item label="买卖挡位:">
 			<el-row>
-			  <el-input-number v-model="ngears.sellTests" :min="1" :max="1000"></el-input-number>
+			  <el-input-number v-model="setting1.gears" :min="1" :max="1000"></el-input-number>
 			</el-row>
 		  </el-form-item>
-		  
+
 		  <el-form-item label="盘口停留时间:">
 			<el-row>
 			  <el-col>
-			    <el-input-number v-model="ngears.residenceTimeStart" :min="1" :max="1000"></el-input-number>
+			    <el-input-number v-model="setting1.minWaitTime" :min="1" :max="1000"></el-input-number>
 				<span>—</span>
-				<el-input-number v-model="ngears.residenceTimeEnd" :min="1" :max="1000"></el-input-number>
+				<el-input-number v-model="setting1.maxWaitTime" :min="1" :max="1000"></el-input-number>
 			  </el-col>
 			</el-row>
 		  </el-form-item>
-		  
+
 		  <el-form-item label="委托单数:">
 			<el-row>
 			  <el-col>
-			    <el-input-number v-model="ngears.entrustSingularStart" :min="1" :max="1000"></el-input-number>
+			    <el-input-number v-model="setting1.minEntrustAmount" :min="1" :max="1000"></el-input-number>
 				<span>—</span>
-				<el-input-number v-model="ngears.entrustSingularEnd" :min="1" :max="1000"></el-input-number>
+				<el-input-number v-model="setting1.maxEntrustAmount" :min="1" :max="1000"></el-input-number>
 			  </el-col>
 			</el-row>
 		  </el-form-item>
-		  
+
 		  <el-form-item label="买比值:">
 			<el-row>
 			  <el-col :span="5">
-			    <el-input v-model="ngears.buyRatio"></el-input>
+			    <el-input v-model="setting1.buyRate"></el-input>
 			  </el-col>
 			</el-row>
 		  </el-form-item>
-		  
+
 		  <el-form-item label="卖比值:">
 			<el-row>
 			  <el-col :span="5">
-			    <el-input v-model="ngears.sellRatio"></el-input>
+			    <el-input v-model="setting1.sellRate"></el-input>
 			  </el-col>
 			</el-row>
 		  </el-form-item>
-		
+      <el-form-item label="交易对:">
+        <el-col :span="6">
+          <el-input v-model="setting1.symbols" placeholder="交易对格式: usdtotc,eoseth,"/>
+        </el-col>
+      </el-form-item>
           <!-- <el-form-item label="买入1:">
             <el-tag type="success">购买订单20位</el-tag>
             <el-row class="grid-content">
@@ -305,7 +325,7 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="因子五">
+      <el-tab-pane label="策略5">
         <el-form ref="setting5" :model="setting5" label-width="120px">
           <el-form-item label="买入:">
             <template v-for="buySetting in setting5.buyStrategy" :v-bind="buySetting.id">
@@ -424,7 +444,7 @@
 
       </el-tab-pane>-->
 
-      <el-tab-pane label="止盈止损" name="six">
+      <el-tab-pane label="策略6" name="six">
         <el-form ref="setting6" :model="setting6" label-width="120px">
           <el-form-item label="状态:">
             <el-switch
@@ -487,34 +507,19 @@ export default {
       title: "创建",
       baseInfo: {
         strategyName: "",
-        buyAmount: "",
-        sellAmount: "",
-        buyPrice: "",
-        sellPrice: "",
-        isAllBuy: true,
-        isAllSell: true,
-        sleep: "3",
-        profit: 1,
-        buyAllWeights: 0,
-        sellAllWeights: 0,
-        isLimitPrice: true,
-        buyQuotaPrice: ""
+        sleep: "1",
       },
-	  ngears: {
-		sellTests: 1,
-		residenceTimeStart: 1,
-		residenceTimeEnd: 10,
-		entrustSingularStart: 1,
-		entrustSingularEnd: 10,
-		buyRatio: 1,
-		sellRatio: 1,
-	  },
+
       setting1: {
-        buyOrdersUsdt: "",
-        sellOrdersUsdt: "",
-        buyWeights: 0,
-        sellWeights: 0,
-		sellTests: 1,
+        able:false,
+        gears: 20,
+        minWaitTime: 1,
+        maxWaitTime: 10,
+        minEntrustAmount: 1,
+        maxEntrustAmount: 1000,
+        buyRate: "0.5",
+        sellRate :"1.2",
+        symbols: ""
       },
       setting2: {
         buyOrderUsdt: "",

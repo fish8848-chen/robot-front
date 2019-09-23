@@ -23,16 +23,16 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="交易对选择:" prop="symbol">
-        <el-select :filterable="true" v-model="robot.symbol" placeholder="请选择交易对">
-          <el-option
-            v-for="item in symbols"
-            :key="item.symbol"
-            :label="item.symbol"
-            :value="item.symbol"
-          ></el-option>
-        </el-select>
-      </el-form-item>
+<!--      <el-form-item label="交易对选择:" prop="symbol">-->
+<!--        <el-select :filterable="true" v-model="robot.symbol" placeholder="请选择交易对">-->
+<!--          <el-option-->
+<!--            v-for="item in symbols"-->
+<!--            :key="item.symbol"-->
+<!--            :label="item.symbol"-->
+<!--            :value="item.symbol"-->
+<!--          ></el-option>-->
+<!--        </el-select>-->
+<!--      </el-form-item>-->
 
       <el-form-item label="节点选择:" prop="nodeAddress">
         <el-select
@@ -67,12 +67,12 @@ export default {
         robotName: "",
         strategyId: "",
         accountId: "",
-        nodeAddress: "",
-        symbol: ""
+        nodeAddress: ""
+       // symbol: ""
       },
       strategys: [],
       nodes: [],
-      symbols: [],
+      //symbols: [],
       accounts: [],
       listQuery: {
         uid: getToken()
@@ -99,8 +99,8 @@ export default {
         ],
         nodeAddress: [
           { required: true, message: "请选择节点地址", trigger: "change" }
-        ],
-        symbol: [{ required: true, message: "请选择交易对", trigger: "change" }]
+        ]
+        //symbol: [{ required: true, message: "请选择交易对", trigger: "change" }]
       }
     };
   },
@@ -118,7 +118,7 @@ export default {
 
     this.getStrategys();
     this.getNodes();
-    this.getSymbols();
+   // this.getSymbols();
     this.getAccounts();
   },
   methods: {
@@ -132,11 +132,11 @@ export default {
       const data = await getNodes();
       this.nodes = data.data;
     },
-    //获取交易对
-    async getSymbols() {
-      const data = await getSymbols();
-      this.symbols = data.data;
-    },
+    // //获取交易对
+    // async getSymbols() {
+    //   const data = await getSymbols();
+    //   this.symbols = data.data;
+    // },
     //获取账号列表
     async getAccounts() {
       const data = await getAccounts(this.listQuery);

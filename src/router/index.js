@@ -47,7 +47,7 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Index',
         component: () => import('@/views/strategy/index'),
-        meta: { title: '简单策略', icon: 'table' }
+        meta: { title: '火币策略', icon: 'table' }
       },
       // {
       //   path: 'indicator',

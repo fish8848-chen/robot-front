@@ -17,55 +17,55 @@
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="ID" width="105px">
+      <el-table-column align="center" label="ID" width="210px">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="策略名称" width="105px">
+      <el-table-column align="center" label="策略名称" width="350px">
         <template slot-scope="scope">
           <span>{{ scope.row.strategyName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="购买总权重" width="105px">
-        <template slot-scope="scope">
-          <span>{{ scope.row.buyAllWeights }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column align="center" label="购买总权重" width="105px">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ scope.row.buyAllWeights }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
-      <el-table-column align="center" label="卖出总权重" width="105px">
-        <template slot-scope="scope">
-          <span>{{ scope.row.sellAllWeights }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column align="center" label="卖出总权重" width="105px">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ scope.row.sellAllWeights }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
-      <el-table-column  align="center" label="是否限价" width="105px">
-        <template slot-scope="scope">
-          <el-tag>{{ checkIsLimitPrice(scope.row.isLimitPrice) }}</el-tag>
-        </template>
-      </el-table-column>
+<!--      <el-table-column  align="center" label="是否限价" width="105px">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag>{{ checkIsLimitPrice(scope.row.isLimitPrice) }}</el-tag>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
-      <el-table-column align="center" label="是否全部购买" width="135px">
-        <template slot-scope="scope">
-          <el-tag>{{ checkBuyState(scope.row.isAllBuy) }}</el-tag>
-        </template>
-      </el-table-column>
+<!--      <el-table-column align="center" label="是否全部购买" width="135px">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag>{{ checkBuyState(scope.row.isAllBuy) }}</el-tag>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
-      <el-table-column align="center" label="是否全部卖出" width="135px">
-        <template slot-scope="scope">
-          <el-tag>{{ checkSellState(scope.row.isAllSell) }}</el-tag>
-        </template>
-      </el-table-column>
+<!--      <el-table-column align="center" label="是否全部卖出" width="135px">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag>{{ checkSellState(scope.row.isAllSell) }}</el-tag>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
-      <el-table-column align="center" label="策略周期" width="105px">
+      <el-table-column align="center" label="策略周期" width="300px">
         <template slot-scope="scope">
           <span>{{ scope.row.sleep }}秒</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="left" label="操作" width="300px">
+      <el-table-column align="left" label="操作" width="350px">
         <template slot-scope="{row}">
           <el-button
             type="success"
