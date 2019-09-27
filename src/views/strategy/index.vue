@@ -15,67 +15,6 @@
             </el-row>
           </el-form-item>
 
-
-<!--          <el-form-item label="买入数量:">-->
-<!--            <el-row>-->
-<!--              <el-switch v-model="baseInfo.isAllBuy" active-text="全部买" inactive-text="自定义"></el-switch>-->
-<!--              <template v-if="!baseInfo.isAllBuy && baseInfo.isLimitPrice">-->
-<!--                <el-form-item label="买入数量:">-->
-<!--                  <el-input-number-->
-<!--                    v-model="baseInfo.buyAmount"-->
-<!--                    :precision="4"-->
-<!--                    :step="0.0001"-->
-<!--                    :max="100000"-->
-<!--                  ></el-input-number>-->
-<!--                </el-form-item>-->
-<!--              </template>-->
-<!--              <template v-if="!baseInfo.isAllBuy && !baseInfo.isLimitPrice">-->
-<!--                <el-form-item label="交易额必须大于1:">-->
-<!--                  <el-input-number-->
-<!--                    v-model="baseInfo.buyQuotaPrice"-->
-<!--                    :precision="4"-->
-<!--                    :step="0.0001"-->
-<!--                    :max="100000"-->
-<!--                  ></el-input-number>-->
-<!--                </el-form-item>-->
-<!--              </template>-->
-<!--            </el-row>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item label="卖出数量:">-->
-<!--            <el-row>-->
-<!--              <el-switch v-model="baseInfo.isAllSell" active-text="全部卖" inactive-text="自定义"></el-switch>-->
-<!--              <template v-if="!baseInfo.isAllSell">-->
-<!--                <el-form-item label="卖出数量:">-->
-<!--                  <el-input-number-->
-<!--                    v-model="baseInfo.sellAmount"-->
-<!--                    :precision="4"-->
-<!--                    :step="0.0001"-->
-<!--                    :max="100000"-->
-<!--                  ></el-input-number>-->
-<!--                </el-form-item>-->
-<!--              </template>-->
-<!--            </el-row>-->
-<!--          </el-form-item>-->
-
-<!--          <el-form-item label="策略周期:">-->
-<!--            <el-input-number v-model="baseInfo.sleep" :min="0" :max="100000"></el-input-number>-->
-<!--            <el-tag>秒执行一次</el-tag>-->
-<!--          </el-form-item>-->
-
-<!--          <el-form-item label="策略亏损次数:">-->
-<!--            <el-input-number v-model="baseInfo.profit" :min="1" :max="100000"></el-input-number>-->
-<!--            <el-tag type="danger">次后机器人自动关闭</el-tag>-->
-<!--          </el-form-item>-->
-
-<!--          <el-form-item label="买入总权重:">-->
-<!--            <el-input-number v-model="baseInfo.buyAllWeights" :min="0" :max="1000"></el-input-number>-->
-<!--          </el-form-item>-->
-
-<!--          <el-form-item label="卖出总权重:">-->
-<!--            <el-input-number v-model="baseInfo.sellAllWeights" :min="0" :max="1000"></el-input-number>-->
-<!--          </el-form-item>-->
-
-
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="N档做市" name="second">
@@ -136,307 +75,261 @@
           <el-input v-model="setting1.symbols" placeholder="交易对格式: usdtotc,eoseth,"/>
         </el-col>
       </el-form-item>
-          <!-- <el-form-item label="买入1:">
-            <el-tag type="success">购买订单20位</el-tag>
-            <el-row class="grid-content">
-              <el-col>
-                <el-tag>产生超过N价格 :</el-tag>
-                <el-input-number
-                  style="margin-left:8px"
-                  v-model="setting1.buyOrdersUsdt"
-                  :precision="8"
-                  :step="0.00000001"
-                  :min="0"
-                  :max="1000000"
-                ></el-input-number>
-              </el-col>
-            </el-row>
-            <el-form-item label="买入权重:">
-              <el-row>
-                <el-input-number v-model="setting1.buyWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
-          </el-form-item>
-          <el-form-item label="卖出:">
-            <el-tag type="warning">卖出订单20位</el-tag>
-            <el-row class="grid-content">
-              <el-col>
-                <el-tag>产生超过USDT价格:</el-tag>
-                <el-input-number
-                  v-model="setting1.sellOrdersUsdt"
-                  :precision="8"
-                  :step="0.00000001"
-                  :max="1000000"
-                ></el-input-number>
-                <el-tag type="danger" class="left">卖操作</el-tag>
-              </el-col>
-            </el-row>
-            <el-form-item label="卖出权重:">
-              <el-row>
-                <el-input-number v-model="setting1.sellWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
-          </el-form-item> -->
         </el-form>
       </el-tab-pane>
 
+
+
       <el-tab-pane label="一档做市" name="third">
         <el-form ref="setting2" :model="setting2" label-width="120px">
-          <el-form-item label="买入:">
-            <el-row class="grid-content">
-              <el-col>
-                <el-tag>最新单笔购买订单的USDT价格大于:</el-tag>
-
-                <el-input-number
-                  v-model="setting2.buyOrderUsdt"
-                  :precision="8"
-                  :step="0.00000001"
-                  :max="1000000"
-                ></el-input-number>
-                <el-tag type="success" class="left">买操作</el-tag>
-              </el-col>
-            </el-row>
-            <el-form-item label="买入权重:">
-              <el-row>
-                <el-input-number v-model="setting2.buyWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
+          <el-form-item label="是否开启:">
+            <el-switch
+              v-model="setting2.able"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
           </el-form-item>
-          <el-form-item label="卖出:">
-            <el-row class="grid-content">
-              <el-col>
-                <el-tag>最新单笔卖出订单的USDT价格大于:</el-tag>
 
-                <el-input-number
-                  v-model="setting2.sellOrderUsdt"
-                  :precision="8"
-                  :step="0.00000001"
-                  :max="1000000"
-                ></el-input-number>
-                <el-tag type="danger" class="left">卖操作</el-tag>
+
+          <el-form-item label="订单停留时间:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting2.waitTimeMin" :min="1" :max="1000"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="setting2.waitTimeMax" :min="1" :max="1000"></el-input-number>
               </el-col>
             </el-row>
-            <el-form-item label="卖出权重:">
-              <el-row>
-                <el-input-number v-model="setting2.sellWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
+          </el-form-item>
+
+          <el-form-item label="委托单数:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting2.amountMin" :min="1" :max="1000"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="setting2.amountMax" :min="1" :max="1000"></el-input-number>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+
+          <el-form-item label="买卖比值:">
+            <el-row>
+              <el-col :span="5">
+                <el-input v-model="setting2.range"></el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
+          <el-form-item label="交易对:">
+            <el-col :span="6">
+              <el-input v-model="setting2.symbol" placeholder="交易对格式: usdtotc,eoseth,"/>
+            </el-col>
           </el-form-item>
         </el-form>
       </el-tab-pane>
 
       <el-tab-pane label="三角套利策略" name="fourth">
         <el-form ref="setting3" :model="setting3" label-width="120px">
-          <el-form-item label="买入:">
-            <el-row class="grid-content">
-              <el-tag>最新购买订单成交记录价格和</el-tag>
-
-              <el-input-number v-model="setting3.buyDownSecond" :min="1" :max="2000" label="秒"></el-input-number>
-              <el-tag>秒之前的订单价格</el-tag>
-
-              <el-tag type="danger">下跌超出</el-tag>
-              <el-input-number
-                :precision="4"
-                v-model="setting3.buyDownPercent"
-                :min="0"
-                :max="2000"
-                label="百分比"
-              ></el-input-number>%
-              <el-tag type="success" class="left">买操作</el-tag>
-            </el-row>
-            <el-form-item label="买入权重:">
-              <el-row class="grid-content">
-                <el-input-number v-model="setting3.buyWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
+          <el-form-item label="是否开启:">
+            <el-switch
+              v-model="setting3.able"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
           </el-form-item>
-          <el-form-item label="卖出:">
-            <el-row class="grid-content">
-              <el-tag>最新卖出订单成交记录当价格和</el-tag>
-              <el-input-number v-model="setting3.sellDownSecond" :min="1" :max="2000" label="秒"></el-input-number>
-              <el-tag>秒之前的订单价格</el-tag>
-              <el-tag type="danger">下跌超出</el-tag>
-              <el-input-number
-                :precision="4"
-                v-model="setting3.sellDownPercent"
-                :min="0"
-                :max="100"
-                label="百分比"
-              ></el-input-number>%
-              <el-tag type="danger" class="left">卖操作</el-tag>
+          <el-form-item label="交易对1:">
+            <el-col :span="6">
+              <el-input v-model="setting3.sym1" placeholder="交易对格式: usdtotc,"/>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="交易对2:">
+            <el-col :span="6">
+              <el-input v-model="setting3.sym2" placeholder="交易对格式: usdtotc,"/>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="交易对3:">
+            <el-col :span="6">
+              <el-input v-model="setting3.sym3" placeholder="交易对格式: usdtotc,"/>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="数量1:">
+            <el-col :span="6">
+              <el-input v-model="setting3.q1" />
+            </el-col>
+          </el-form-item>
+          <el-form-item label="数量2:">
+            <el-col :span="6">
+              <el-input v-model="setting3.q2" />
+            </el-col>
+          </el-form-item>
+          <el-form-item label="数量3:">
+            <el-col :span="6">
+              <el-input v-model="setting3.q3" />
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="交易手续费:">
+            <el-col :span="6">
+              <el-input v-model="setting3.fee" />
+            </el-col>
+          </el-form-item>
+
+
+          <el-form-item label="价格精度:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting3.priceScale" :min="1" :max="5"></el-input-number>
+              </el-col>
             </el-row>
-            <el-form-item label="卖出权重:">
-              <el-row class="grid-content">
-                <el-input-number v-model="setting3.sellWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
+          </el-form-item>
+
+          <el-form-item label="数量精度:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting3.volScale" :min="1" :max="5"></el-input-number>
+              </el-col>
+            </el-row>
           </el-form-item>
         </el-form>
       </el-tab-pane>
+
 
       <el-tab-pane label="机器人策略" name="five">
         <el-form ref="setting4" :model="setting4" label-width="120px">
-          <el-form-item label="买入:">
-            <el-row class="grid-content">
-              <el-tag>最新购买订单成交记录价格和</el-tag>
-              <el-input-number v-model="setting4.buyUpSecond" :min="1" :max="2000" label="秒"></el-input-number>
-              <el-tag>秒之前的订单价格</el-tag>
-              <el-tag type="success">上涨超出</el-tag>
-              <el-input-number
-                :precision="4"
-                v-model="setting4.buyUpPercent"
-                :min="0"
-                :max="2000"
-                label="百分比"
-              ></el-input-number>
-              <el-tag>%</el-tag>
-              <el-tag type="success" class="left">买操作</el-tag>
-            </el-row>
-            <el-form-item label="买入权重:">
-              <el-row class="grid-content">
-                <el-input-number v-model="setting4.buyWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
+          <el-form-item label="是否开启:">
+            <el-switch
+              v-model="setting4.able"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
           </el-form-item>
-          <el-form-item label="卖出:">
-            <el-row class="grid-content">
-              <el-tag>最新卖出订单成交记录当价格和</el-tag>
 
-              <el-input-number v-model="setting4.sellUpSecond" :min="1" :max="2000" label="秒"></el-input-number>
-              <el-tag>秒之前的订单价格</el-tag>
-
-              <el-tag type="success">上涨超出</el-tag>
-              <el-input-number
-                :precision="4"
-                v-model="setting4.sellUpPercent"
-                :min="0"
-                :max="2000"
-                label="百分比"
-              ></el-input-number>
-              <el-tag>%</el-tag>
-
-              <el-tag type="danger" class="left">卖操作</el-tag>
+          <el-form-item label="交易对的买卖数量区间:">
+            <el-row>
+              <el-col>
+                <el-input v-model="setting4.volMin" ></el-input>
+                <span>—</span>
+                <el-input v-model="setting4.volMax"></el-input>
+              </el-col>
             </el-row>
-            <el-form-item label="卖出权重:">
-              <el-row class="grid-content">
-                <el-input-number v-model="setting4.sellWeights" :min="0" :max="1000"></el-input-number>
-              </el-row>
-            </el-form-item>
+          </el-form-item>
+
+          <el-form-item label="默认执行买卖一档区间:">
+            <el-row>
+              <el-col>
+                <el-input v-model="setting4.priceMin" ></el-input>
+                <span>—</span>
+                <el-input v-model="setting4.priceMax"></el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="买卖一档的价格区间过小则不交易:">
+            <el-row>
+              <el-col>
+                <el-input v-model="setting4.thresholdMin" ></el-input>
+                <span>—</span>
+                <el-input v-model="setting4.thresholdMax"></el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="价格精度:">
+            <el-row>
+                <el-input-number v-model="setting4.priceScale" :min="1" :max="5"></el-input-number>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="数量精度:">
+            <el-row>
+              <el-input-number v-model="setting4.volScale" :min="1" :max="5"></el-input-number>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="交易对:">
+            <el-col :span="6">
+              <el-input v-model="setting4.symbol" placeholder="交易对格式: usdtotc"/>
+            </el-col>
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="策略5">
-        <el-form ref="setting5" :model="setting5" label-width="120px">
-          <el-form-item label="买入:">
-            <template v-for="buySetting in setting5.buyStrategy" :v-bind="buySetting.id">
-              <el-form-item label="分钟线:">
-                <el-select v-model="buySetting.buyKline" placeholder="请选择">
-                  <el-option
-                    v-for="item in klines"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="趋势:">
-                <el-radio v-model="buySetting.buyKlineOption" label="1">上涨趋势</el-radio>
-                <el-radio v-model="buySetting.buyKlineOption" label="2">下跌趋势</el-radio>
-              </el-form-item>
-              <el-form-item label="涨跌幅大于:">
-                <el-row :gutter="6" class="grid-content">
-                  <el-col :span="4">
-                    <el-input v-model="buySetting.buyPercent" placeholder="只填数值"></el-input>
-                  </el-col>
-                  <el-col :span="2">
-                    <el-tag type="danger" class="left">%</el-tag>
-                  </el-col>
-                </el-row>
-              </el-form-item>
 
-              <el-form-item label="买入权重:">
-                <el-row class="grid-content">
-                  <el-input-number v-model="buySetting.buyWeights" :min="0" :max="1000"></el-input-number>
-                </el-row>
-              </el-form-item>
-              <el-form-item>
-                <el-button
-                  class="filter-item"
-                  style="margin-left: 430px;"
-                  type="primary"
-                  size="small"
-                  icon="el-icon-remove-outline"
-                  @click="handleDelete(buySetting.id,1)"
-                ></el-button>
-              </el-form-item>
-              <hr style="border:1 dashed #303133;margin:10px" width="40%" color="#303133" size="1">
-            </template>
 
-            <el-form-item>
-              <el-button
-                class="filter-item"
-                style="margin-left: 430px;"
-                type="primary"
-                size="small"
-                icon="el-icon-circle-plus-outline"
-                @click="handleCreate(1)"
-              ></el-button>
-            </el-form-item>
+
+
+
+      <el-tab-pane label="限价买入卖出">
+        <el-form ref="setting7" :model="setting7" label-width="120px">
+          <el-form-item label="是否开启:">
+            <el-switch
+              v-model="setting7.able"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
           </el-form-item>
 
-          <el-form-item label="卖出:">
-            <template v-for="sellSetting in setting5.sellStrategy" :v-bind="buySetting.id">
-              <el-form-item label="分钟线:">
-                <el-select v-model="sellSetting.sellKline" placeholder="请选择">
-                  <el-option
-                    v-for="item in klines"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="趋势:">
-                <el-radio v-model="sellSetting.sellKlineOption" label="1">上涨趋势</el-radio>
-                <el-radio v-model="sellSetting.sellKlineOption" label="2">下跌趋势</el-radio>
-              </el-form-item>
-              <el-form-item label="涨跌幅大于:">
-                <el-row :gutter="6" class="grid-content">
-                  <el-col :span="4">
-                    <el-input v-model="sellSetting.sellPercent" placeholder="只填数值"></el-input>
-                  </el-col>
-                  <el-col :span="2">
-                    <el-tag type="danger" class="left">%</el-tag>
-                  </el-col>
-                </el-row>
-              </el-form-item>
-              <el-form-item label="卖出权重:">
-                <el-row class="grid-content">
-                  <el-input-number v-model="sellSetting.sellWeights" :min="0" :max="1000"></el-input-number>
-                </el-row>
-              </el-form-item>
-              <el-form-item>
-                <el-button
-                  class="filter-item"
-                  style="margin-left: 430px;"
-                  type="primary"
-                  size="small"
-                  icon="el-icon-remove-outline"
-                  @click="handleDelete(sellSetting.id,2)"
-                ></el-button>
-              </el-form-item>
-              <hr style="border:1 dashed #303133;margin:10px" width="40%" color="#303133" size="1">
-            </template>
-            <el-form-item>
-              <el-button
-                class="filter-item"
-                style="margin-left: 430px;"
-                type="primary"
-                size="small"
-                icon="el-icon-circle-plus-outline"
-                @click="handleCreate(2)"
-              ></el-button>
-            </el-form-item>
+          <el-form-item label="交易量（买）:">
+            <el-row>
+              <el-input v-model="setting7.buyNum"></el-input>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="交易量（卖）:">
+            <el-row>
+              <el-input v-model="setting7.sellNum"></el-input>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="总交易量（买）:">
+            <el-row>
+              <el-input v-model="setting7.buyTotalNum"></el-input>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="总交易量（卖）:">
+            <el-row>
+              <el-input v-model="setting7.sellTotalNum"></el-input>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="买入交易价格倍数:">
+            <el-row>
+              <el-input v-model="setting7.buyRate"></el-input>
+            </el-row>
+          </el-form-item>
+
+
+          <el-form-item label="卖出交易价格倍数:">
+            <el-row>
+              <el-input v-model="setting7.sellRate"></el-input>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="实时价格最低最高限买（买）:">
+            <el-row>
+              <el-input v-model="setting7.buyPriceLimit"></el-input>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="实时价格最低最高限制（卖）:">
+            <el-row>
+              <el-input v-model="setting7.sellPriceLimit"></el-input>
+            </el-row>
+          </el-form-item>
+
+
+          <el-form-item label="交易对:">
+            <el-col :span="6">
+              <el-input v-model="setting7.symbol" placeholder="交易对格式: eoseth,"/>
+            </el-col>
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -522,27 +415,58 @@ export default {
         sellRate :"1.2",
         symbols: ""
       },
+
       setting2: {
-        buyOrderUsdt: "",
-        sellOrderUsdt: "",
-        buyWeights: 0,
-        sellWeights: 0
+        able: false,
+        waitTimeMin: 0,
+        waitTimeMax: 10,
+        amountMin:1,
+        amountMax:10,
+        range:0.3,
+        symbol: ""
       },
-      setting3: {
-        buyDownSecond: "",
-        buyDownPercent: "",
-        sellDownSecond: "",
-        sellDownPercent: "",
-        buyWeights: 0,
-        sellWeights: 0
+
+
+    setting3: {
+        able: false,
+        sym1: "",
+        sym2: "",
+        sym3: "",
+        q1: "",
+        q2: 0,
+        q3: 0,
+        fee:0.2,
+        priceScale:2,
+        volScale:2
       },
+
+
+      setting7: {
+        able:false,
+        symbol: "",
+        buyNum: "",
+        sellNum: "",
+        buyTotalNum: "",
+        sellTotalNum: 0,
+        buyRate: 0,
+        sellRate:0.2,
+        buyPriceLimit:2,
+        sellPriceLimit:2
+      },
+
       setting4: {
-        buyUpSecond: "",
-        buyUpPercent: "",
-        sellUpSecond: "",
-        sellUpPercent: "",
-        buyWeights: 0,
-        sellWeights: 0
+        able: false,
+        symbol: "",
+        volMin: "",
+        volMax: "",
+        intervalTimeMin: "",
+        intervalTimeMax: 0,
+        priceScale: 0,
+        volScale:0,
+        priceMin:0,
+        priceMax:0,
+        thresholdMin:0,
+        thresholdMax:0
       },
       setting5: {
         buyStrategy: [

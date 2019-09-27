@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-table :data="tableData" stripe border height="850" style="width: 100%">
       <el-table-column prop="id" label="机器人编号" width="105px"></el-table-column>
-      <el-table-column prop="robotName" label="机器人名称" width="210px">
+      <el-table-column prop="robotName" label="机器人名称" width="180px">
         <template slot-scope="scope">
           <i class="el-icon-info"></i>
           <span>{{ scope.row.robotName }}</span>
@@ -10,9 +10,9 @@
       </el-table-column>
 
       <el-table-column prop="strategyId" label="策略编号" width="105px"></el-table-column>
-      <el-table-column prop="strategyName" label="策略名称" width="210px"></el-table-column>
-      <el-table-column prop="startegyTypeName" label="策略名称" width="105px"></el-table-column>
-      <el-table-column prop="clientAddress" label="托管地址" width="165px"></el-table-column>
+      <el-table-column prop="strategyName" label="策略名称" width="180px"></el-table-column>
+      <el-table-column prop="startegyTypeName" label="策略类型" width="150px"></el-table-column>
+      <el-table-column prop="clientAddress" label="托管地址" width="155px"></el-table-column>
 
       <el-table-column prop="isRun" label="运行状态" width="135px">
         <template slot-scope="scope">
