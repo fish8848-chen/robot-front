@@ -3,7 +3,7 @@
     <el-tabs type="card" value="first">
       <el-tab-pane label="基础设置" name="first">
         <el-form ref="base" :model="baseInfo" label-width="140px">
-          <el-form-item label="火币策略名称:">
+          <el-form-item label="btfun策略名称:">
             <el-col :span="6">
               <el-input v-model="baseInfo.strategyName" placeholder="请不要些重名"/>
             </el-col>
@@ -133,7 +133,7 @@
 		  </el-form-item>
       <el-form-item label="交易对:">
         <el-col :span="6">
-          <el-input v-model="setting1.symbols" placeholder="交易对格式: usdtotc,eoseth,"/>
+          <el-input v-model="setting1.symbols" placeholder="交易对格式: eth/usdt,"/>
         </el-col>
       </el-form-item>
           <!-- <el-form-item label="买入1:">
@@ -508,7 +508,7 @@ export default {
       baseInfo: {
         strategyName: "",
         sleep: "1",
-        type:0
+        type:1
       },
 
       setting1: {

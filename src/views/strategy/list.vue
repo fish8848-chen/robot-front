@@ -29,11 +29,11 @@
         </template>
       </el-table-column>
 
-<!--      <el-table-column align="center" label="购买总权重" width="105px">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ scope.row.buyAllWeights }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <el-table-column align="center" label="策略类型" width="105px">
+        <template slot-scope="scope">
+          <span>{{ scope.row.strategyTypeName }}</span>
+        </template>
+      </el-table-column>
 
 <!--      <el-table-column align="center" label="卖出总权重" width="105px">-->
 <!--        <template slot-scope="scope">-->

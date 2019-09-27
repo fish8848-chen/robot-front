@@ -49,12 +49,12 @@ export const constantRouterMap = [
         component: () => import('@/views/strategy/index'),
         meta: { title: '火币策略', icon: 'table' }
       },
-      // {
-      //   path: 'indicator',
-      //   name: 'Indicator',
-      //   component: () => import('@/views/strategy/indicator'),
-      //   meta: { title: '指标策略', icon: 'tree' }
-      // },
+      {
+        path: 'btfunIndex',
+        name: 'BtfunIndex',
+        component: () => import('@/views/strategy/btfunIndex'),
+        meta: { title: 'btfun策略', icon: 'tree' }
+      },
       {
         path: 'list',
         name: 'List',

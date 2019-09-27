@@ -63,7 +63,7 @@
 
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="{row}">
-          <el-button type="primary" size="small" icon="el-icon-info" @click="info(row)">查看</el-button>
+<!--          <el-button type="primary" size="small" icon="el-icon-info" @click="info(row)">查看</el-button>-->
 
           <el-button type="primary" size="small" icon="el-icon-edit" @click="handleEdit(row)">编辑</el-button>
         </template>
