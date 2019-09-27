@@ -31,7 +31,8 @@
 
       <el-table-column align="center" label="策略类型" width="105px">
         <template slot-scope="scope">
-          <span>{{ scope.row.strategyTypeName }}</span>
+          <span v-if="scope.row.strategyType===0">火币策略</span>
+          <span v-else-if="scope.row.strategyType===1">btfun策略</span>
         </template>
       </el-table-column>
 
@@ -150,13 +151,23 @@ export default {
       }
     },
     confirmEdit(row) {
-      //修改策略
-      this.$router.push({
-        path: "/strategy/index",
-        query: {
-          id: row.id
-        }
-      });
+      if(row.strategyType === 0) {
+        //修改策略
+        this.$router.push({
+          path: "/strategy/index",
+          query: {
+            id: row.id
+          }
+        });
+      } else {
+        //修改策略
+        this.$router.push({
+          path: "/strategy/btfunIndex",
+          query: {
+            id: row.id
+          }
+        });}
+
     },
     delectStrategy(id) {
       this.$confirm("机器人可能在使用该策略, 是否继续删除?", "提示", {

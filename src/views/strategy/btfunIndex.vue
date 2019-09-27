@@ -633,6 +633,7 @@ export default {
         this.baseInfo.sellAllWeights = data.sellAllWeights;
         this.baseInfo.profit = data.profit;
         this.baseInfo.sleep = data.sleep;
+        this.baseInfo.type = 1;
         console.log(this.setting5);
         if (this.setting6.isAble == 1) {
           this.setting6.isAble = true;
