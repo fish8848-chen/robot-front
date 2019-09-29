@@ -179,21 +179,6 @@
           </el-form-item>
 
 
-          <el-form-item label="价格精度:">
-            <el-row>
-              <el-col>
-                <el-input-number v-model="setting3.priceScale" :min="1" :max="5"></el-input-number>
-              </el-col>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="数量精度:">
-            <el-row>
-              <el-col>
-                <el-input-number v-model="setting3.volScale" :min="1" :max="5"></el-input-number>
-              </el-col>
-            </el-row>
-          </el-form-item>
         </el-form>
       </el-tab-pane>
 
@@ -237,18 +222,6 @@
                 <span>—</span>
                 <el-input v-model="setting4.thresholdMax"></el-input>
               </el-col>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="价格精度:">
-            <el-row>
-                <el-input-number v-model="setting4.priceScale" :min="1" :max="5"></el-input-number>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="数量精度:">
-            <el-row>
-              <el-input-number v-model="setting4.volScale" :min="1" :max="5"></el-input-number>
             </el-row>
           </el-form-item>
 
@@ -337,51 +310,7 @@
 
       </el-tab-pane>-->
 
-      <el-tab-pane label="策略6" name="six">
-        <el-form ref="setting6" :model="setting6" label-width="120px">
-          <el-form-item label="状态:">
-            <el-switch
-              v-model="setting6.isAble"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
-          <template v-if="setting6.isAble">
-            <el-form-item label="止盈:">
-              <el-row class="grid-content">
-                <el-col>
-                  <el-tag>盈利达到:</el-tag>
-                  <el-input-number
-                    v-model="setting6.takeProfit"
-                    :precision="4"
-                    :step="0.0001"
-                    :max="1000000"
-                  ></el-input-number>
-                  <el-tag type="success">%</el-tag>
-                  <el-tag type="danger" class="left">卖出</el-tag>
-                </el-col>
-              </el-row>
-            </el-form-item>
-            <el-form-item label="止损:">
-              <el-row class="grid-content">
-                <el-col>
-                  <el-tag>亏损达到:</el-tag>
-                  <el-input-number
-                    v-model="setting6.stopLoss"
-                    :precision="4"
-                    :step="0.0001"
-                    :max="1000000"
-                  ></el-input-number>
-                  <el-tag type="success">%</el-tag>
-                  <el-tag type="danger" class="left">卖出</el-tag>
-                </el-col>
-              </el-row>
-            </el-form-item>
-          </template>
-        </el-form>
-      </el-tab-pane>
+
     </el-tabs>
     <el-row>
       <el-col :offset="10">
