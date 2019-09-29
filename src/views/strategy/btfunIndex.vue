@@ -15,6 +15,22 @@
             </el-row>
           </el-form-item>
 
+          <el-form-item label="价格精度:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="baseInfo.pricePrecision" :min="1" :max="32"></el-input-number>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="数量的精度:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="baseInfo.amountPrecision" :min="1" :max="32"></el-input-number>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
         </el-form>
       </el-tab-pane>
 
@@ -425,7 +441,9 @@
         baseInfo: {
           strategyName: '',
           sleep: '1',
-          type: 1
+          type: 1,
+          pricePrecision:4,
+          amountPrecision:4
         },
 
         setting1: {
