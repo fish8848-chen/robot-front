@@ -62,7 +62,7 @@
 
       <el-table-column align="center" label="策略周期" width="300px">
         <template slot-scope="scope">
-          <span>{{ scope.row.sleep }}秒</span>
+          <span>{{ scope.row.minSleep }}-{{ scope.row.maxSleep }}秒</span>
         </template>
       </el-table-column>
 

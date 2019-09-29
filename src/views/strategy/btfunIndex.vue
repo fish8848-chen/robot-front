@@ -11,7 +11,11 @@
 
           <el-form-item label="周期时间:">
             <el-row>
-              <el-input-number v-model="baseInfo.sleep" :min="0" :max="1000"></el-input-number>
+              <el-col>
+                <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
+              </el-col>
             </el-row>
           </el-form-item>
 
@@ -440,10 +444,12 @@
         title: '创建',
         baseInfo: {
           strategyName: '',
-          sleep: '1',
+          minSleep: '0',
+          maxSleep: '1',
           type: 1,
           pricePrecision:4,
           amountPrecision:4
+
         },
 
         setting1: {
