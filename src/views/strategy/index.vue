@@ -212,7 +212,7 @@
 
           <el-form-item label="交易对的买卖数量区间:">
             <el-row>
-              <el-col>
+              <el-col span="6">
                 <el-input v-model="setting4.volMin" ></el-input>
                 <span>—</span>
                 <el-input v-model="setting4.volMax"></el-input>
@@ -222,7 +222,7 @@
 
           <el-form-item label="默认执行买卖一档区间:">
             <el-row>
-              <el-col>
+              <el-col span="6">
                 <el-input v-model="setting4.priceMin" ></el-input>
                 <span>—</span>
                 <el-input v-model="setting4.priceMax"></el-input>
@@ -277,7 +277,7 @@
           </el-form-item>
 
           <el-form-item label="交易量（买）:">
-            <el-row>
+            <el-row >
               <el-input v-model="setting7.buyNum"></el-input>
             </el-row>
           </el-form-item>
