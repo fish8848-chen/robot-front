@@ -12,7 +12,7 @@
           <el-form-item label="周期时间:">
             <el-row>
               <el-col>
-                <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.minSleep" :min="0.1" :max="100"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
               </el-col>
@@ -217,20 +217,21 @@
 
           <el-form-item label="交易对的买卖数量区间:">
             <el-row>
-              <el-col span="6">
-                <el-input v-model="setting4.volMin"></el-input>
+              <el-col >
+                <el-input-number v-model="setting4.volMin" :min="1" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input v-model="setting4.volMax"></el-input>
+                <el-input-number v-model="setting4.volMax" :min="1" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
 
+
           <el-form-item label="默认执行买卖一档区间:">
             <el-row>
-              <el-col span="6">
-                <el-input v-model="setting4.priceMin"></el-input>
+              <el-col>
+                <el-input-number v-model="setting4.priceMin" :min="1" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input v-model="setting4.priceMax"></el-input>
+                <el-input-number v-model="setting4.priceMax" :min="1" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -238,9 +239,9 @@
           <el-form-item label="买卖一档的价格区间过小则不交易:">
             <el-row>
               <el-col>
-                <el-input v-model="setting4.thresholdMin"></el-input>
+                <el-input-number v-model="setting4.thresholdMin":min="1" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input v-model="setting4.thresholdMax"></el-input>
+                <el-input-number v-model="setting4.thresholdMax" :min="1" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
