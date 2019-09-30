@@ -3,11 +3,15 @@
     <el-tabs type="card" value="first">
       <el-tab-pane label="基础设置" name="first">
         <el-form ref="base" :model="baseInfo" label-width="140px">
-          <el-form-item label="btfun策略名称:">
+          <el-form-item label="btfun策略名称:" prop="strategyName" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="baseInfo.strategyName" placeholder="请不要些重名"/>
             </el-col>
+
           </el-form-item>
+
 
           <el-form-item label="周期时间:">
             <el-row>
@@ -19,27 +23,12 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="价格精度:">
-            <el-row>
-              <el-col>
-                <el-input-number v-model="baseInfo.pricePrecision" :min="1" :max="32"></el-input-number>
-              </el-col>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="数量的精度:">
-            <el-row>
-              <el-col>
-                <el-input-number v-model="baseInfo.amountPrecision" :min="1" :max="32"></el-input-number>
-              </el-col>
-            </el-row>
-          </el-form-item>
 
         </el-form>
       </el-tab-pane>
 
       <el-tab-pane label="N档做市" name="second">
-        <el-form ref="ngears" :model="setting1" label-width="120px" :rules="makeMarketRules">
+        <el-form ref="ngears" :model="setting1" label-width="120px">
           <el-form-item label="是否开启:">
             <el-switch
               v-model="setting1.able"
@@ -50,13 +39,17 @@
             ></el-switch>
           </el-form-item>
 
-          <el-form-item label="买卖挡位:">
+          <el-form-item label="买卖挡位:" prop="gears" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-input-number v-model="setting1.gears" :min="1" :max="1000"></el-input-number>
             </el-row>
           </el-form-item>
 
-          <el-form-item label="盘口停留时间:">
+          <el-form-item label="盘口停留时间:"prop="minWaitTime" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col>
                 <el-input-number v-model="setting1.minWaitTime" :min="1" :max="1000"></el-input-number>
@@ -66,7 +59,9 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="委托单数:">
+          <el-form-item label="委托数量:"prop="minEntrustAmount" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col>
                 <el-input-number v-model="setting1.minEntrustAmount" :min="1" :max="1000"></el-input-number>
@@ -76,7 +71,9 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="买比值:">
+          <el-form-item label="买比值:"prop="buyRate" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col :span="5">
                 <el-input v-model="setting1.buyRate"></el-input>
@@ -84,18 +81,29 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="卖比值:">
+          <el-form-item label="卖比值:" prop="sellRate" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col :span="5">
                 <el-input v-model="setting1.sellRate"></el-input>
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item label="交易对:">
+          <el-form-item label="交易对:" prop="symbols" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting1.symbols" placeholder="交易对格式: eth/usdt"/>
             </el-col>
           </el-form-item>
+
+          <el-form-item>
+            <el-col :offset="11">
+              <el-button type="warning" @click="submitForm('ngears')">{{title}}</el-button>
+            </el-col>
+          </el-form-item>
+
         </el-form>
       </el-tab-pane>
 
@@ -113,7 +121,9 @@
           </el-form-item>
 
 
-          <el-form-item label="订单停留时间:">
+          <el-form-item label="订单停留时间:" prop="waitTimeMin" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col>
                 <el-input-number v-model="setting2.waitTimeMin" :min="1" :max="1000"></el-input-number>
@@ -123,7 +133,9 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="委托单数:">
+          <el-form-item label="委托数量:" prop="amountMin" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col>
                 <el-input-number v-model="setting2.amountMin" :min="1" :max="1000"></el-input-number>
@@ -134,18 +146,32 @@
           </el-form-item>
 
 
-          <el-form-item label="买卖比值:">
+          <el-form-item label="买卖比值:" prop="range" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col :span="5">
                 <el-input v-model="setting2.range"></el-input>
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item label="交易对:">
+          <el-form-item label="交易对:" prop="symbol" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
-              <el-input v-model="setting2.symbol" placeholder="交易对格式: usdtotc,eoseth,"/>
+              <el-input v-model="setting2.symbol" placeholder="交易对格式: eth/usdt,"/>
             </el-col>
           </el-form-item>
+
+
+
+          <el-form-item>
+            <el-col :offset="10">
+              <el-button type="warning" @click="submitForm('setting2')">{{title}}</el-button>
+            </el-col>
+          </el-form-item>
+
+
         </el-form>
       </el-tab-pane>
 
@@ -160,41 +186,62 @@
               inactive-text="关闭"
             ></el-switch>
           </el-form-item>
-          <el-form-item label="交易对1:">
+          <el-form-item label="交易对1:"prop="sym1" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.sym1" placeholder="交易对格式: usdtotc,"/>
+              <el-input v-model="setting3.sym1" placeholder="交易对格式: eth/usdt"/>
             </el-col>
           </el-form-item>
-          <el-form-item label="交易对2:">
+          <el-form-item label="交易对2:" prop="sym2" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.sym2" placeholder="交易对格式: usdtotc,"/>
+              <el-input v-model="setting3.sym2" placeholder="交易对格式: eth/usdt"/>
             </el-col>
           </el-form-item>
-          <el-form-item label="交易对3:">
+          <el-form-item label="交易对3:" prop="sym3" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.sym3" placeholder="交易对格式: usdtotc,"/>
-            </el-col>
-          </el-form-item>
-
-          <el-form-item label="数量1:">
-            <el-col :span="6">
-              <el-input v-model="setting3.q1"/>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="数量2:">
-            <el-col :span="6">
-              <el-input v-model="setting3.q2"/>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="数量3:">
-            <el-col :span="6">
-              <el-input v-model="setting3.q3"/>
+              <el-input v-model="setting3.sym3" placeholder="交易对格式: eth/usdt"/>
             </el-col>
           </el-form-item>
 
-          <el-form-item label="交易手续费:">
+          <el-form-item label="数量1:"  prop="q1" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.fee"/>
+              <el-input-number v-model="setting3.q1" :min="0" :max="100000"/>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="数量2:"  prop="q2" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input-number v-model="setting3.q2" :min="0" :max="100000"/>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="数量3:" prop="q3" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting3.q3" :min="0" :max="100000"/>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="交易手续费:" prop="fee" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting3.fee" :min="0" :max="3"/>
+            </el-col>
+          </el-form-item>
+
+
+          <el-form-item>
+            <el-col :offset="10">
+              <el-button type="warning" @click="submitForm('setting3')">{{title}}</el-button>
             </el-col>
           </el-form-item>
 
@@ -215,7 +262,9 @@
             ></el-switch>
           </el-form-item>
 
-          <el-form-item label="交易对的买卖数量区间:">
+          <el-form-item label="交易对的买卖数量区间:" prop="volMin" label-width='240px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col >
                 <el-input-number v-model="setting4.volMin" :min="1" :max="100000"></el-input-number>
@@ -226,7 +275,9 @@
           </el-form-item>
 
 
-          <el-form-item label="默认执行买卖一档区间:">
+          <el-form-item label="默认执行买卖一档区间:" prop="priceMin"  label-width='240px'  :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col>
                 <el-input-number v-model="setting4.priceMin" :min="1" :max="100000"></el-input-number>
@@ -236,7 +287,9 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="买卖一档的价格区间过小则不交易:">
+          <el-form-item label="买卖一档的价格区间过小则不交易:"  prop="thresholdMin"  label-width='240px'  :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
             <el-row>
               <el-col>
                 <el-input-number v-model="setting4.thresholdMin" :min="1" :max="100000"></el-input-number>
@@ -246,12 +299,18 @@
             </el-row>
           </el-form-item>
 
-
-          <el-form-item label="交易对:">
+          <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
+			      { required: true, message: '交易对不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting4.symbol" placeholder="交易对格式: usdtotc"/>
             </el-col>
           </el-form-item>
+          <el-form-item>
+			      <el-col :offset="10">
+			        <el-button type="warning" @click="submitForm('setting4')">{{title}}</el-button>
+			      </el-col>
+			    </el-form-item>
         </el-form>
       </el-tab-pane>
 
@@ -268,61 +327,88 @@
             ></el-switch>
           </el-form-item>
 
-          <el-form-item label="交易量（买）:">
-            <el-row>
-              <el-input v-model="setting7.buyNum"></el-input>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="交易量（卖）:">
-            <el-row>
-              <el-input v-model="setting7.sellNum"></el-input>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="总交易量（买）:">
-            <el-row>
-              <el-input v-model="setting7.buyTotalNum"></el-input>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="总交易量（卖）:">
-            <el-row>
-              <el-input v-model="setting7.sellTotalNum"></el-input>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="买入交易价格倍数:">
-            <el-row>
-              <el-input v-model="setting7.buyRate"></el-input>
-            </el-row>
-          </el-form-item>
-
-
-          <el-form-item label="卖出交易价格倍数:">
-            <el-row>
-              <el-input v-model="setting7.sellRate"></el-input>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="实时价格最低最高限买（买）:">
-            <el-row>
-              <el-input v-model="setting7.buyPriceLimit"></el-input>
-            </el-row>
-          </el-form-item>
-
-          <el-form-item label="实时价格最低最高限制（卖）:">
-            <el-row>
-              <el-input v-model="setting7.sellPriceLimit"></el-input>
-            </el-row>
-          </el-form-item>
-
-
-          <el-form-item label="交易对:">
+          <el-form-item label="交易量（买）:" prop="buyNum"  label-width='240px'  :rules="[
+			      { required: true, message: '交易量（买）不能为空'}
+			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.symbol" placeholder="交易对格式: eoseth,"/>
+              <el-input v-model="setting7.buyNum"></el-input>
             </el-col>
           </el-form-item>
+
+          <el-form-item label="交易量（卖）:" prop="sellNum"  label-width='240px'  :rules="[
+			      { required: true, message: '交易量（卖）不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.sellNum"></el-input>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="总交易量（买）:" prop="buyTotalNum"  label-width='240px'  :rules="[
+			      { required: true, message: '总交易量（买）不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.buyTotalNum"></el-input>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="总交易量（卖）:" prop="sellTotalNum"  label-width='240px'  :rules="[
+			      { required: true, message: '总交易量（卖）不能为空'}
+			    ]">
+            <el-col :span ="6">
+              <el-input v-model="setting7.sellTotalNum"></el-input>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="买入交易价格倍数:" prop="buyRate"  label-width='240px'  :rules="[
+			      { required: true, message: '买入交易价格倍数不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.buyRate"></el-input>
+            </el-col>
+          </el-form-item>
+
+
+          <el-form-item label="卖出交易价格倍数:" prop="sellRate"  label-width='240px'  :rules="[
+			      { required: true, message: '卖出交易价格倍数不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.sellRate"></el-input>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="实时价格最低最高限买（买）:" prop="buyPriceLimit"  label-width='240px'  :rules="[
+			      { required: true, message: '实时价格最低最高限买（买）不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.buyPriceLimit"></el-input>
+            </el-col>
+          </el-form-item>
+
+          <el-form-item label="实时价格最低最高限制（卖）:" prop="sellPriceLimit"  label-width='240px'  :rules="[
+			      { required: true, message: '实时价格最低最高限制（卖）不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.sellPriceLimit"></el-input>
+            </el-col>
+          </el-form-item>
+
+
+          <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
+			      { required: true, message: '交易对不能为空'}
+			    ]">
+            <el-col :span="6">
+              <el-input v-model="setting7.symbol" placeholder="交易对格式: eth/usdt"/>
+            </el-col>
+          </el-form-item>
+
+
+          <el-form-item>
+            <el-col :offset="10">
+              <el-button type="warning" @click="submitForm('setting7')">{{title}}</el-button>
+            </el-col>
+          </el-form-item>
+
+
         </el-form>
       </el-tab-pane>
 
@@ -342,36 +428,52 @@
               inactive-text="关闭"
             ></el-switch>
           </el-form-item>
-          <el-form-item label="交易对:">
+          <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
+			      { required: true, message: '交易对不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting8.symbol" placeholder="交易对格式: eth/usdt,"/>
             </el-col>
           </el-form-item>
-          <el-form-item label="跟踪误差:">
+          <el-form-item label="跟踪误差:" prop="traceError"  label-width='240px'  :rules="[
+			      { required: true, message: '跟踪误差不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting8.traceError" placeholder="最好不要超过两个平台手续费之和，不会调节此处可以设0"/>
             </el-col>
           </el-form-item>
-          <el-form-item label="交易数量最小值:">
-            <el-col :span="6">
-              <el-input v-model="setting8.amountMin"/>
+          <el-form-item label="交易数量最小值:" prop="amountMin"  label-width='240px'  :rules="[
+			      { required: true, message: '交易数量不能为空'}
+			    ]">
+            <el-row>
+            <el-col >
+              <el-input-number v-model="setting8.amountMin" :min="0" :max="100000"/>
+              <span>——</span>
+              <el-input-number v-model="setting8.amountMax" :min="0" :max="100000"/>
             </el-col>
+            </el-row>
           </el-form-item>
 
-          <el-form-item label="交易数量最大值:">
-            <el-col :span="6">
-              <el-input v-model="setting8.amountMax"/>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="对标平台手续费:">
+          <el-form-item label="对标平台手续费:" prop="templateFee"  label-width='240px'  :rules="[
+			      { required: true, message: '对标平台手续费不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting8.templateFee"/>
             </el-col>
           </el-form-item>
 
-          <el-form-item label="本平台手续费:">
+          <el-form-item label="本平台手续费:" prop="monitorFee"  label-width='240px'  :rules="[
+			      { required: true, message: '本平台手续费不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting8.monitorFee"/>
+            </el-col>
+          </el-form-item>
+
+
+          <el-form-item>
+            <el-col :offset="10">
+              <el-button type="warning" @click="submitForm('setting8')">{{title}}</el-button>
             </el-col>
           </el-form-item>
 
@@ -380,7 +482,7 @@
 
 
       <el-tab-pane label="btfun的N档做市" name="five">
-        <el-form ref="setting5" :model="setting5" label-width="120px" :rules="makeMarketRules">
+        <el-form ref="setting5" :model="setting5" label-width="120px">
           <el-form-item label="是否开启:">
             <el-switch
               v-model="setting5.able"
@@ -391,47 +493,66 @@
             ></el-switch>
           </el-form-item>
 
-          <el-form-item label="买卖挡位:">
+          <el-form-item label="买卖挡位:" prop="gears"  label-width='140px'  :rules="[
+			      { required: true, message: '买卖档位不能为空'}
+			    ]">
             <el-row>
               <el-input-number v-model="setting5.gears" :min="1" :max="1000"></el-input-number>
             </el-row>
           </el-form-item>
 
-          <el-form-item label="每档买卖单的价差范围:">
+          <el-form-item label="每档买卖单的价差范围:"prop="priceXmin"  label-width='140px'  :rules="[
+			      { required: true, message: '每档买卖单的价差范围不能为空'}
+			    ]">
             <el-row>
               <el-col>
-                <el-input v-model="setting5.priceXmin"></el-input>
+                <el-input-number v-model="setting5.priceXmin"/>
                 <span>—</span>
-                <el-input v-model="setting5.priceXmax"></el-input>
+                <el-input-number v-model="setting5.priceXmax"/>
               </el-col>
             </el-row>
           </el-form-item>
 
-          <el-form-item label="委托单数:">
+          <el-form-item label="委托数量:" prop="minEntrustAmount"  label-width='140px'  :rules="[
+			      { required: true, message: '委托数量不能为空'}
+			    ]">
             <el-row>
               <el-col>
-                <el-input v-model="setting5.minEntrustAmount"></el-input>
+                <el-input-number v-model="setting5.minEntrustAmount"/>
                 <span>—</span>
-                <el-input v-model="setting5.maxEntrustAmount"></el-input>
+                <el-input-number v-model="setting5.maxEntrustAmount"/>
               </el-col>
             </el-row>
           </el-form-item>
 
-          <el-form-item label="交易对:">
+          <el-form-item label="交易对:" prop="symbols"  label-width='140px'  :rules="[
+			      { required: true, message: '交易对不能为空'}
+			    ]">
             <el-col :span="6">
               <el-input v-model="setting5.symbols" placeholder="交易对格式: eth/usdt"/>
             </el-col>
           </el-form-item>
+
+
+
+          <el-form-item>
+            <el-col :offset="10">
+              <el-button type="warning" @click="submitForm('setting5')">{{title}}</el-button>
+            </el-col>
+          </el-form-item>
+
+
+
         </el-form>
       </el-tab-pane>
 
 
     </el-tabs>
-    <el-row>
+    <!--<el-row>
       <el-col :offset="10">
-        <el-button type="warning" @click="onSubmit()">{{title}}</el-button>
+        <el-button type="warning" @click="submitForm('setting4')">{{title}}</el-button>
       </el-col>
-    </el-row>
+    </el-row>  之前的按钮，在公共部分-->
   </div>
 </template>
 
@@ -450,9 +571,7 @@
           type: 1,
           pricePrecision:4,
           amountPrecision:4
-
         },
-
         setting1: {
           able: false,
           gears: 20,
@@ -640,33 +759,41 @@
       }
     },
     methods: {
-      async onSubmit() {
-        var requestData = {
-          id: this.id,
-          baseInfo: this.baseInfo,
-          setting1: this.setting1,
-          setting2: this.setting2,
-          setting3: this.setting3,
-          setting4: this.setting4,
-          setting5: this.setting5,
-          setting6: this.setting6,
-          setting6: this.setting7,
-          setting6: this.setting8
+    	 submitForm(formName) {
+	    	this.$refs[formName].validate( async (valid) => {
+	        if (valid) {
+//	          onSubmit () {
+			        var requestData = {
+			          id: this.id,
+			          baseInfo: this.baseInfo,
+			          setting1: this.setting1,
+			          setting2: this.setting2,
+			          setting3: this.setting3,
+			          setting4: this.setting4,
+			          setting5: this.setting5,
+			          setting6: this.setting6
+			        }
+			        const data = await addOrUpdateStrategy(requestData)
+			        if (data.code === 20000) {
+			          this.$notify({
+			            title: '操作成功',
+			            message: this.id === undefined ? '创建成功！！！' : '修改成功！！！',
+			            type: 'success',
+			            duration: 2000
+			          })
+			          this.id = data.data
+			          this.title = '修改'
+			          // this.$router.push({ path: "/strategy/list" });
+			        }
+//			      }
 
-        }
-        const data = await addOrUpdateStrategy(requestData)
-        if (data.code === 20000) {
-          this.$notify({
-            title: '操作成功',
-            message: this.id === undefined ? '创建成功！！！' : '修改成功！！！',
-            type: 'success',
-            duration: 2000
-          })
-          this.id = data.data
-          this.title = '修改'
-          // this.$router.push({ path: "/strategy/list" });
-        }
+	        } else {
+	          console.log('error submit!!');
+	          return false;
+	        }
+	     });
       },
+
       handleCreate(type) {
         if (type === 1) {
           this.increS5Buy = this.increS5Buy + 1
