@@ -93,7 +93,7 @@
           </el-form-item>
           <el-form-item label="交易对:">
             <el-col :span="6">
-              <el-input v-model="setting1.symbols" placeholder="交易对格式: usdtotc,eoseth,"/>
+              <el-input v-model="setting1.symbols" placeholder="交易对格式: eth/usdt"/>
             </el-col>
           </el-form-item>
         </el-form>
