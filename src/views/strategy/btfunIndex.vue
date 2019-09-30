@@ -587,6 +587,10 @@
           this.setting4 = JSON.parse(data.setting4)
           this.setting5 = JSON.parse(data.setting5)
           this.setting6 = JSON.parse(data.setting6)
+          this.setting7 = JSON.parse(data.setting7)
+          this.setting8 = JSON.parse(data.setting8)
+
+
           this.baseInfo.strategyName = data.strategyName
           this.baseInfo.buyAllWeights = data.buyAllWeights
           this.baseInfo.sellAllWeights = data.sellAllWeights
@@ -645,7 +649,10 @@
           setting3: this.setting3,
           setting4: this.setting4,
           setting5: this.setting5,
-          setting6: this.setting6
+          setting6: this.setting6,
+          setting6: this.setting7,
+          setting6: this.setting8
+
         }
         const data = await addOrUpdateStrategy(requestData)
         if (data.code === 20000) {
