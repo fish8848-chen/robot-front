@@ -190,7 +190,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.sym1" placeholder="交易对格式: eth/usdt"/>
+              <el-input v-model="setting3.sym1" placeholder="交易对格式: btc/usdt"/>
             </el-col>
           </el-form-item>
           <el-form-item label="交易对2:" prop="sym2" label-width='140px' :rules="[
@@ -204,7 +204,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.sym3" placeholder="交易对格式: eth/usdt"/>
+              <el-input v-model="setting3.sym3" placeholder="交易对格式: eth/btc"/>
             </el-col>
           </el-form-item>
 

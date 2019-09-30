@@ -164,17 +164,17 @@
           </el-form-item>
           <el-form-item label="交易对1:">
             <el-col :span="6">
-              <el-input v-model="setting3.sym1" placeholder="交易对格式: usdtotc,"/>
+              <el-input v-model="setting3.sym1" placeholder="交易对格式: ethusdt"/>
             </el-col>
           </el-form-item>
           <el-form-item label="交易对2:">
             <el-col :span="6">
-              <el-input v-model="setting3.sym2" placeholder="交易对格式: usdtotc,"/>
+              <el-input v-model="setting3.sym2" placeholder="交易对格式: ioncusdt,"/>
             </el-col>
           </el-form-item>
           <el-form-item label="交易对3:">
             <el-col :span="6">
-              <el-input v-model="setting3.sym3" placeholder="交易对格式: usdtotc,"/>
+              <el-input v-model="setting3.sym3" placeholder="交易对格式: ionceth,"/>
             </el-col>
           </el-form-item>
 
