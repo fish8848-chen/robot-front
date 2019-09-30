@@ -239,7 +239,7 @@
           <el-form-item label="买卖一档的价格区间过小则不交易:">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting4.thresholdMin":min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.thresholdMin" :min="1" :max="100000"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting4.thresholdMax" :min="1" :max="100000"></el-input-number>
               </el-col>
@@ -504,12 +504,15 @@
         },
 
         setting4: {
-          buyUpSecond: '',
-          buyUpPercent: '',
-          sellUpSecond: '',
-          sellUpPercent: '',
-          buyWeights: 0,
-          sellWeights: 0
+          able:false,
+          symbol: '',
+          volMax: 1000,
+          volMin: 1,
+          priceMin: 0.1,
+          priceMax: 10000,
+          thresholdMax: 9,
+          thresholdMin: 0
+
         },
 
         setting5: {
