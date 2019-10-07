@@ -308,7 +308,9 @@
 
 
 
-          <el-form-item label="交易对选择:" prop="symbol">
+          <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
+			      { required: true, message: '请选择交易对'}
+			    ]">
             <el-select :filterable="true" v-model="setting4.symbol" placeholder="请选择交易对">
               <el-option
                 v-for="item in symbols"
