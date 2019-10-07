@@ -169,12 +169,12 @@
           </el-form-item>
           <el-form-item label="交易对2:">
             <el-col :span="6">
-              <el-input v-model="setting3.sym2" placeholder="交易对格式: ioncusdt,"/>
+              <el-input v-model="setting3.sym2" placeholder="交易对格式: ioncusdt"/>
             </el-col>
           </el-form-item>
           <el-form-item label="交易对3:">
             <el-col :span="6">
-              <el-input v-model="setting3.sym3" placeholder="交易对格式: ionceth,"/>
+              <el-input v-model="setting3.sym3" placeholder="交易对格式: ionceth"/>
             </el-col>
           </el-form-item>
 
@@ -504,11 +504,10 @@ export default {
         this.setting2 = JSON.parse(data.setting2);
         this.setting3 = JSON.parse(data.setting3);
         this.setting4 = JSON.parse(data.setting4);
-        this.setting5 = JSON.parse(data.setting5);
-        this.setting6 = JSON.parse(data.setting6);
+        this.setting7 = JSON.parse(data.setting7);
         this.baseInfo.strategyName = data.strategyName;
-        this.baseInfo.buyAllWeights = data.buyAllWeights;
-        this.baseInfo.sellAllWeights = data.sellAllWeights;
+        this.baseInfo.minSleep = data.minSleep;
+        this.baseInfo.maxSleep = data.maxSleep;
         this.baseInfo.profit = data.profit;
         this.baseInfo.sleep = data.sleep;
         this.baseInfo.type = 0;
@@ -563,8 +562,7 @@ export default {
         setting2: this.setting2,
         setting3: this.setting3,
         setting4: this.setting4,
-        setting5: this.setting5,
-        setting6: this.setting6
+        setting7: this.setting7
       };
       const data = await addOrUpdateStrategy(requestData);
       if (data.code === 20000) {
