@@ -304,26 +304,22 @@
           </el-form-item>
 
 
-          <el-form-item label="交易对test:" prop="symbol"  label-width='240px'>
-          <el-select v-model="value" placeholder="请选择">
+
+
+
+
+          <el-form-item label="交易对选择:" prop="symbol">
+            <el-select :filterable="true" v-model="setting4.symbol" placeholder="请选择交易对">
               <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="item.symbol"
+              ></el-option>
             </el-select>
           </el-form-item>
 
 
-
-          <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
-			      { required: true, message: '交易对不能为空'}
-			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting4.symbol" placeholder="交易对格式: usdtotc"/>
-            </el-col>
-          </el-form-item>
           <el-form-item>
 			      <el-col :offset="10">
 			        <el-button type="warning" @click="submitForm('setting4')">{{title}}</el-button>
@@ -560,7 +556,8 @@
 </template>
 
 <script>
-  import { addOrUpdateStrategy, getStrategyById } from '@/api/strategy.js'
+  import { addOrUpdateStrategy, getStrategyById } from '@/api/strategy.js';
+  import { getSymbols } from "@/api/symbol.js"
 
   export default {
     data() {
@@ -612,7 +609,7 @@
           sellRate: [{ validator: sellRate, trigger: 'blur' }]
         },
 
-
+        symbols: [],
         id: '',
         title: '创建',
         baseInfo: {
@@ -746,7 +743,8 @@
     },
     created() {
       const id = this.$route.query.id
-      this.id = id
+      this.id = id;
+      this.getSymbols();
       if (this.id !== undefined) {
         this.title = '修改'
         var params = {
@@ -812,6 +810,17 @@
     methods: {
       changeCheckbox (e) {
         console.log(e)
+      },
+
+      //获取交易对
+      async getSymbols() {
+        var symbolsParam = {
+          symbolsType : 1
+        }
+        const data = await getSymbols(symbolsParam);
+
+        this.symbols = data.data;
+        console.log(symbols);
       },
     	 submitForm(formName) {
 	    	this.$refs[formName].validate( async (valid) => {
