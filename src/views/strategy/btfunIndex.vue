@@ -88,11 +88,22 @@
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item label="交易对:" prop="symbols" label-width='140px' >
-            <el-col :span="6">
-              <el-input v-model="setting1.symbols" placeholder="交易对格式: eth/usdt"/>
-            </el-col>
+
+
+          <el-form-item label="交易对选择:" prop="symbols" label-width='140px'  :rules="[
+			      { required: true, message: '请选择交易对'}
+			    ]">
+            <el-select :filterable="true" v-model="setting1.symbols" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
+
+
 
           <el-form-item>
             <el-col :offset="11">
@@ -105,7 +116,7 @@
 
 
       <el-tab-pane label="一档做市" name="third">
-        <el-form ref="ngears" :model="setting2" label-width="120px">
+        <el-form ref="setting2" :model="setting2" label-width="120px">
           <el-form-item label="是否开启:">
             <el-switch
               v-model="setting2.able"
@@ -151,19 +162,26 @@
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item label="交易对:" prop="symbol" label-width='140px' :rules="[
-			      { required: true, message: '该项不能为空'}
+
+
+          <el-form-item label="交易对选择:" prop="symbol" label-width='140px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting2.symbol" placeholder="交易对格式: eth/usdt,"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting2.symbol" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
 
 
 
           <el-form-item>
             <el-col :offset="10">
-              <el-button type="warning" @click="submitForm('ngears')">{{title}}</el-button>
+              <el-button type="warning" @click="submitForm('setting2')">{{title}}</el-button>
             </el-col>
           </el-form-item>
 
@@ -182,27 +200,50 @@
               inactive-text="关闭"
             ></el-switch>
           </el-form-item>
-          <el-form-item label="交易对1:"prop="sym1" label-width='140px' :rules="[
-			      { required: true, message: '该项不能为空'}
+
+
+          <el-form-item label="交易对1:" prop="sym1" label-width='140px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting3.sym1" placeholder="交易对格式: btc/usdt"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting3.sym1" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="交易对2:" prop="sym2" label-width='140px' :rules="[
-			      { required: true, message: '该项不能为空'}
+
+
+          <el-form-item label="交易对2:" prop="sym2" label-width='140px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting3.sym2" placeholder="交易对格式: eth/usdt"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting3.sym2" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="交易对3:" prop="sym3" label-width='140px' :rules="[
-			      { required: true, message: '该项不能为空'}
+
+
+          <el-form-item label="交易对3:" prop="sym3" label-width='140px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting3.sym3" placeholder="交易对格式: eth/btc"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting3.sym3" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
+
+
 
           <el-form-item label="数量1:"  prop="q1" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
@@ -308,7 +349,7 @@
 
 
 
-          <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
+          <el-form-item label="交易对选择:" prop="autosymbol" label-width='240px'  :rules="[
 			      { required: true, message: '请选择交易对'}
 			    ]">
             <el-select :filterable="true" v-model="setting4.symbol" placeholder="请选择交易对">
@@ -316,7 +357,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -409,12 +450,17 @@
           </el-form-item>
 
 
-          <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
-			      { required: true, message: '交易对不能为空'}
+          <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting7.symbol" placeholder="交易对格式: eth/usdt"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting7.symbol" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
 
 
@@ -444,13 +490,22 @@
               inactive-text="关闭"
             ></el-switch>
           </el-form-item>
-          <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
-			      { required: true, message: '交易对不能为空'}
+
+          <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting8.symbol" placeholder="交易对格式: eth/usdt,"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting8.symbol" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
+
+
+
           <el-form-item label="跟踪误差:" prop="traceError"  label-width='240px'  :rules="[
 			      { required: true, message: '跟踪误差不能为空'}
 			    ]">
@@ -526,13 +581,22 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="交易对:" prop="symbols"  label-width='140px'  :rules="[
-			      { required: true, message: '交易对不能为空'}
+
+
+
+          <el-form-item label="交易对选择:" prop="symbols" label-width='140px'  :rules="[
+			      { required: true, message: '请选择交易对'}
 			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting5.symbols" placeholder="交易对格式: eth/usdt"/>
-            </el-col>
+            <el-select :filterable="true" v-model="setting5.symbols" placeholder="请选择交易对">
+              <el-option
+                v-for="item in symbols"
+                :key="item.symbol"
+                :label="item.symbol"
+                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+              ></el-option>
+            </el-select>
           </el-form-item>
+
 
 
 
@@ -590,23 +654,7 @@
 
       return {
 
-        options: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
-        value: '',
+
         gearRules:{
           sellRate: [{ validator: sellRate, trigger: 'blur' }]
         },
@@ -700,45 +748,7 @@
           takeProfit: 0,
           stopLoss: 0
         },
-        //1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
-        klines: [
-          {
-            value: '1min',
-            label: '1min'
-          },
-          {
-            value: '5min',
-            label: '5min'
-          },
-          {
-            value: '15min',
-            label: '15min'
-          },
-          {
-            value: '30min',
-            label: '30min'
-          },
-          {
-            value: '60min',
-            label: '60min'
-          },
-          {
-            value: '1day',
-            label: '1day'
-          },
-          {
-            value: '1mon',
-            label: '1mon'
-          },
-          {
-            value: '1week',
-            label: '1week'
-          },
-          {
-            value: '1year',
-            label: '1year'
-          }
-        ],
+
         increS5Buy: 1,
         increS5Sell: 1
       }
@@ -767,43 +777,11 @@
           this.baseInfo.minSleep = data.minSleep
           this.baseInfo.maxSleep = data.maxSleep
           this.baseInfo.type = 1
+          for(var i = 0; i< this.setting3.currencys.length; i++){
+            this.setting3.currencys[i] = this.setting3.currencys[i] + '';
+          }
           console.log(this.setting5)
-          if (this.setting6.isAble == 1) {
-            this.setting6.isAble = true
-          }
 
-          if (data.isLimitPrice === 1) {
-            //限价
-            this.baseInfo.isLimitPrice = true
-            this.baseInfo.buyPrice = data.buyPrice
-            this.baseInfo.sellPrice = data.sellPrice
-
-            if (data.isAllBuy === 1) {
-              //全部买
-              this.baseInfo.isAllBuy = true
-            } else {
-              this.baseInfo.isAllBuy = false
-              this.baseInfo.buyAmount = data.buyAmount
-            }
-          } else {
-            //市价 没有购买 卖出 价格设置
-            this.baseInfo.isLimitPrice = false
-            if (data.isAllBuy === 1) {
-              //全部买
-              this.baseInfo.isAllBuy = true
-            } else {
-              this.baseInfo.isAllBuy = false
-              this.baseInfo.buyQuotaPrice = data.buyQuotaPrice
-            }
-          }
-
-          if (data.isAllSell === 1) {
-            //全部卖
-            this.baseInfo.isAllSell = true
-          } else {
-            this.baseInfo.isAllSell = false
-            this.baseInfo.sellAmount = data.sellAmount
-          }
         })
       } else {
         title: '创建'
@@ -822,12 +800,22 @@
         const data = await getSymbols(symbolsParam);
 
         this.symbols = data.data;
-        console.log(symbols);
+        console.log(this.symbols,data,"symbols");
       },
     	 submitForm(formName) {
 	    	this.$refs[formName].validate( async (valid) => {
 	        if (valid) {
 //	          onSubmit () {
+
+            if(this.baseInfo.strategyName==='')
+            {
+              this.$notify({
+                title: '警告',
+                message: '请输入策略的名称',
+                type: 'error'
+              })
+              return false;
+            }
 			        var requestData = {
 			          id: this.id,
 			          baseInfo: this.baseInfo,
@@ -839,6 +827,7 @@
 			          setting7: this.setting7,
                 setting8: this.setting8
 			        }
+
 			        const data = await addOrUpdateStrategy(requestData)
 			        if (data.code === 20000) {
 			          this.$notify({
