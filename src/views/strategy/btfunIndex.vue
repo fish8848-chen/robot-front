@@ -611,41 +611,43 @@
           symbols: ''
         },
         setting2: {
-          buyOrderUsdt: '',
-          sellOrderUsdt: '',
-          buyWeights: 0,
-          sellWeights: 0
+          able: false,
+          range: '',
+          amountMin: '',
+          amountMax: 0,
+          waitTimeMin: 1,
+          waitTimeMax: 10,
+          symbol: ''
         },
         setting3: {
-          buyDownSecond: '',
-          buyDownPercent: '',
-          sellDownSecond: '',
-          sellDownPercent: '',
-          buyWeights: 0,
-          sellWeights: 0,
-          checkbox2:['复选框 B']
+          sym1: '',
+          sym2: '',
+          sym3: '',
+          q1: 0,
+          q2: 0,
+          q3: 0,
+          currencys: ['1'],
+          fee: 0.002,
+          able: false
         },
 
         setting8: {
           able: false,
           symbol: '',
-          traceError: '0',
-          amountMin: '0',
-          amountMax: '1000',
-          templateFee: '0.002',
-          monitorFee: '0.002'
-
+          traceError: 0,
+          amountMin: 1,
+          amountMax: 1000,
         },
 
         setting7: {
           able: false,
           symbol: '',
-          buyNum: '',
-          sellNum: '',
-          buyTotalNum: '',
+          buyNum: 0,
+          sellNum: 0,
+          buyTotalNum: 0,
           sellTotalNum: 0,
-          buyRate: 0,
-          sellRate: 0.2,
+          buyRate: 1.1,
+          sellRate: 0.9,
           buyPriceLimit: 2,
           sellPriceLimit: 2
         },
@@ -655,20 +657,19 @@
           symbol: '',
           volMax: 1000,
           volMin: 1,
-          priceMin: 0.1,
+          priceMin: 1,
           priceMax: 10000,
-          thresholdMax: 9,
-          thresholdMin: 0,
-          disableSwitch: false,
+          thresholdMax: 0.3,
+          thresholdMin: 0.2
 
         },
 
         setting5: {
           gears: 3,
-          priceXmin: '',
-          priceXmax: '',
-          minEntrustAmount: '',
-          maxEntrustAmount: '',
+          priceXmin: 0.1,
+          priceXmax: 0.1,
+          minEntrustAmount: 1.1,
+          maxEntrustAmount: 1.5,
           symbols: ''
         },
         setting6: {
@@ -734,16 +735,13 @@
           this.setting3 = JSON.parse(data.setting3)
           this.setting4 = JSON.parse(data.setting4)
           this.setting5 = JSON.parse(data.setting5)
-          this.setting6 = JSON.parse(data.setting6)
           this.setting7 = JSON.parse(data.setting7)
           this.setting8 = JSON.parse(data.setting8)
 
 
           this.baseInfo.strategyName = data.strategyName
-          this.baseInfo.buyAllWeights = data.buyAllWeights
-          this.baseInfo.sellAllWeights = data.sellAllWeights
-          this.baseInfo.profit = data.profit
-          this.baseInfo.sleep = data.sleep
+          this.baseInfo.minSleep = data.minSleep
+          this.baseInfo.maxSleep = data.maxSleep
           this.baseInfo.type = 1
           console.log(this.setting5)
           if (this.setting6.isAble == 1) {
@@ -788,7 +786,9 @@
       }
     },
     methods: {
-
+      changeCheckbox (e) {
+        console.log(e)
+      },
     	 submitForm(formName) {
 	    	this.$refs[formName].validate( async (valid) => {
 	        if (valid) {
@@ -801,7 +801,8 @@
 			          setting3: this.setting3,
 			          setting4: this.setting4,
 			          setting5: this.setting5,
-			          setting6: this.setting6
+			          setting7: this.setting7,
+                setting8: this.setting8
 			        }
 			        const data = await addOrUpdateStrategy(requestData)
 			        if (data.code === 20000) {
