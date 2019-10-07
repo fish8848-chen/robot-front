@@ -473,21 +473,6 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="对标平台手续费:" prop="templateFee"  label-width='240px'  :rules="[
-			      { required: true, message: '对标平台手续费不能为空'}
-			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting8.templateFee"/>
-            </el-col>
-          </el-form-item>
-
-          <el-form-item label="本平台手续费:" prop="monitorFee"  label-width='240px'  :rules="[
-			      { required: true, message: '本平台手续费不能为空'}
-			    ]">
-            <el-col :span="6">
-              <el-input v-model="setting8.monitorFee"/>
-            </el-col>
-          </el-form-item>
 
 
           <el-form-item>
