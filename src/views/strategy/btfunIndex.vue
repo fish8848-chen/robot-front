@@ -28,7 +28,7 @@
       </el-tab-pane>
 
       <el-tab-pane label="N档做市" name="second">
-        <el-form ref="ngears" :model="setting1" label-width="120px">
+        <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
           <el-form-item label="是否开启:">
             <el-switch
               v-model="setting1.able"
@@ -43,7 +43,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
-              <el-input-number v-model="setting1.gears" :min="1" :max="1000"></el-input-number>
+              <el-input-number v-model="setting1.gears" :min="1" :max="1000" :step="0.5"></el-input-number>
             </el-row>
           </el-form-item>
 
@@ -81,18 +81,14 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="卖比值:" prop="sellRate" label-width='140px' :rules="[
-			      { required: true, message: '该项不能为空'}
-			    ]">
+          <el-form-item label="卖比值:" prop="sellRate" label-width='140px' >
             <el-row>
               <el-col :span="5">
                 <el-input v-model="setting1.sellRate"></el-input>
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item label="交易对:" prop="symbols" label-width='140px' :rules="[
-			      { required: true, message: '该项不能为空'}
-			    ]">
+          <el-form-item label="交易对:" prop="symbols" label-width='140px' >
             <el-col :span="6">
               <el-input v-model="setting1.symbols" placeholder="交易对格式: eth/usdt"/>
             </el-col>
@@ -100,7 +96,7 @@
 
           <el-form-item>
             <el-col :offset="11">
-              <el-button type="warning" @click="submitForm('ngears')">{{title}}</el-button>
+              <el-button type="warning" @click="submitForm('setting1')">{{title}}</el-button>
             </el-col>
           </el-form-item>
 
@@ -109,7 +105,7 @@
 
 
       <el-tab-pane label="一档做市" name="third">
-        <el-form ref="setting2" :model="setting2" label-width="120px">
+        <el-form ref="ngears" :model="setting2" label-width="120px">
           <el-form-item label="是否开启:">
             <el-switch
               v-model="setting2.able"
@@ -167,7 +163,7 @@
 
           <el-form-item>
             <el-col :offset="10">
-              <el-button type="warning" @click="submitForm('setting2')">{{title}}</el-button>
+              <el-button type="warning" @click="submitForm('ngears')">{{title}}</el-button>
             </el-col>
           </el-form-item>
 
@@ -236,6 +232,14 @@
             <el-col :span="6">
               <el-input v-model="setting3.fee" :min="0" :max="3"/>
             </el-col>
+          </el-form-item>
+
+          <el-form-item label="checkboss2:" prop="checkbox2" label-width='140px'>
+          <el-checkbox-group v-model="setting3.checkbox2">
+            <el-checkbox :value="1">复选框 A</el-checkbox>
+            <el-checkbox :value="2">复选框 B</el-checkbox>
+            <el-checkbox :value="3">复选框 C</el-checkbox>
+          </el-checkbox-group>
           </el-form-item>
 
 
@@ -546,7 +550,45 @@
 
   export default {
     data() {
+
+
+
+      var ruleNumber = (rule, value, callback) => {
+        var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+        if (value === '') {
+          callback(new Error('请输入乘车人手机号码'));
+        } else if(!myreg.test(value)) {
+          callback(new Error('请输入正确乘车人手机号码'));
+        }else {
+          callback();
+        }
+      };
+
+
+      var sellRate = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入卖的比值'));
+        } else if(value<1 || value >2) {
+          callback(new Error('卖的比值必须在1-2之间'));
+        }else {
+          callback();
+        }
+      };
+
+
       return {
+
+
+
+
+        gearRules:{
+          symbols: [{ validator: ruleNumber, trigger: 'blur' }],
+
+          sellRate: [{ validator: sellRate, trigger: 'blur' }]
+
+        },
+
+
         id: '',
         title: '创建',
         baseInfo: {
@@ -580,7 +622,8 @@
           sellDownSecond: '',
           sellDownPercent: '',
           buyWeights: 0,
-          sellWeights: 0
+          sellWeights: 0,
+          checkbox2:['复选框 B']
         },
 
         setting8: {
@@ -615,7 +658,8 @@
           priceMin: 0.1,
           priceMax: 10000,
           thresholdMax: 9,
-          thresholdMin: 0
+          thresholdMin: 0,
+          disableSwitch: false,
 
         },
 
@@ -744,6 +788,7 @@
       }
     },
     methods: {
+
     	 submitForm(formName) {
 	    	this.$refs[formName].validate( async (valid) => {
 	        if (valid) {
