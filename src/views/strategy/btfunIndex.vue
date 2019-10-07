@@ -64,9 +64,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting1.minEntrustAmount" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="1000" :step="0.5"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting1.maxEntrustAmount" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting1.maxEntrustAmount" :min="0" :max="1000" :step="0.5"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -76,7 +76,7 @@
 			    ]">
             <el-row>
               <el-col :span="5">
-                <el-input v-model="setting1.buyRate"></el-input>
+                <el-input-number v-model="setting1.buyRate" :min="0.01" :max="1" :step="0.05"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -84,7 +84,7 @@
           <el-form-item label="卖比值:" prop="sellRate" label-width='140px' >
             <el-row>
               <el-col :span="5">
-                <el-input v-model="setting1.sellRate"></el-input>
+                <el-input-number v-model="setting1.sellRate" :min="1.01" :max="10" :step="0.05"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -147,7 +147,7 @@
 			    ]">
             <el-row>
               <el-col :span="5">
-                <el-input v-model="setting2.range"></el-input>
+                <el-input-number v-model="setting2.range" :min="0" :max="100"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -222,7 +222,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.q3" :min="0" :max="100000"/>
+              <el-input-number v-model="setting3.q3" :min="0" :max="100000"/>
             </el-col>
           </el-form-item>
 
@@ -230,15 +230,15 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting3.fee" :min="0" :max="3"/>
+              <el-input-number v-model="setting3.fee" :min="0" :max="3"/>
             </el-col>
           </el-form-item>
 
-          <el-form-item label="checkboss2:" prop="checkbox2" label-width='140px'>
-          <el-checkbox-group v-model="setting3.checkbox2">
-            <el-checkbox :value="1">复选框 A</el-checkbox>
-            <el-checkbox :value="2">复选框 B</el-checkbox>
-            <el-checkbox :value="3">复选框 C</el-checkbox>
+          <el-form-item label="交易对选择:" prop="currencys" label-width='140px'>
+          <el-checkbox-group v-model="setting3.currencys">
+            <el-checkbox label="1">usdt</el-checkbox>
+            <el-checkbox label="2">第三个交易对的支付币</el-checkbox>
+            <el-checkbox label="3">第三个交易对的交易币</el-checkbox>
           </el-checkbox-group>
           </el-form-item>
 
@@ -303,6 +303,20 @@
             </el-row>
           </el-form-item>
 
+
+          <el-form-item label="交易对test:" prop="symbol"  label-width='240px'>
+          <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+
+
+
           <el-form-item label="交易对:" prop="symbol"  label-width='240px'  :rules="[
 			      { required: true, message: '交易对不能为空'}
 			    ]">
@@ -335,7 +349,7 @@
 			      { required: true, message: '交易量（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.buyNum"></el-input>
+              <el-input-number v-model="setting7.buyNum" :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -343,7 +357,7 @@
 			      { required: true, message: '交易量（卖）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.sellNum"></el-input>
+              <el-input-number v-model="setting7.sellNum" :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -351,7 +365,7 @@
 			      { required: true, message: '总交易量（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.buyTotalNum"></el-input>
+              <el-input-number v-model="setting7.buyTotalNum"  :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -359,7 +373,7 @@
 			      { required: true, message: '总交易量（卖）不能为空'}
 			    ]">
             <el-col :span ="6">
-              <el-input v-model="setting7.sellTotalNum"></el-input>
+              <el-input-number v-model="setting7.sellTotalNum"  :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -367,7 +381,7 @@
 			      { required: true, message: '买入交易价格倍数不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.buyRate"></el-input>
+              <el-input-number v-model="setting7.buyRate"  :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -376,7 +390,7 @@
 			      { required: true, message: '卖出交易价格倍数不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.sellRate"></el-input>
+              <el-input-number v-model="setting7.sellRate"  :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -384,7 +398,7 @@
 			      { required: true, message: '实时价格最低最高限买（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.buyPriceLimit"></el-input>
+              <el-input-number v-model="setting7.buyPriceLimit"  :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -392,7 +406,7 @@
 			      { required: true, message: '实时价格最低最高限制（卖）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting7.sellPriceLimit"></el-input>
+              <el-input-number v-model="setting7.sellPriceLimit"  :min="0" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -452,7 +466,7 @@
             <el-row>
             <el-col >
               <el-input-number v-model="setting8.amountMin" :min="0" :max="100000"/>
-              <span>——</span>
+              <span>—</span>
               <el-input-number v-model="setting8.amountMax" :min="0" :max="100000"/>
             </el-col>
             </el-row>
@@ -552,7 +566,6 @@
     data() {
 
 
-
       var ruleNumber = (rule, value, callback) => {
         var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
         if (value === '') {
@@ -578,14 +591,25 @@
 
       return {
 
-
-
-
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
+        value: '',
         gearRules:{
-          symbols: [{ validator: ruleNumber, trigger: 'blur' }],
-
           sellRate: [{ validator: sellRate, trigger: 'blur' }]
-
         },
 
 
