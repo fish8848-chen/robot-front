@@ -143,6 +143,16 @@ export default {
           });
         }
       }
+      else if(data.code === 1006)
+      {
+        this.$notify({
+          title: '警告',
+          message: '机器人已经在运行',
+          type: 'error'
+        })
+        return false;
+      }
+
     },
     orderInfo(id) {
       this.$router.push({
