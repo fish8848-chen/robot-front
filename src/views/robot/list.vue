@@ -9,12 +9,12 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="strategyId" label="策略编号" width="105px"></el-table-column>
+      <el-table-column prop="strategyId" label="策略编号" width="60px"></el-table-column>
       <el-table-column prop="strategyName" label="策略名称" width="180px"></el-table-column>
-      <el-table-column prop="startegyTypeName" label="策略类型" width="150px"></el-table-column>
-      <el-table-column prop="clientAddress" label="托管地址" width="155px"></el-table-column>
+      <el-table-column prop="startegyTypeName" label="策略类型" width="110px"></el-table-column>
+      <el-table-column prop="clientAddress" label="托管地址" width="140px"></el-table-column>
 
-      <el-table-column prop="isRun" label="运行状态" width="135px">
+      <el-table-column prop="isRun" label="运行状态" width="110px">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span v-if="scope.row.isRun===0" style="margin-left: 10px">
@@ -25,7 +25,7 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="600px">
+      <el-table-column label="操作" width="520px">
         <template slot-scope="scope">
           <el-button
             v-if="scope.row.isRun===0"
@@ -35,7 +35,7 @@
           >启动</el-button>
           <el-button v-else @click="operatingRobot(scope.row.id,0)" type="warning" size="small">停止</el-button>
 <!--          <el-button @click="robotInfo(scope.row)" type="info" size="small">实时日志</el-button>-->
-<!--          <el-button @click="orderInfo(scope.row.id)" type="warning" size="small">订单</el-button>-->
+          <el-button @click="logsInfo(scope.row.id)" type="warning" size="small">实时日志</el-button>
 <!--          <el-button-->
 <!--            icon="el-icon-info"-->
 <!--            type="info"-->
@@ -157,6 +157,14 @@ export default {
     orderInfo(id) {
       this.$router.push({
         path: "/order/list",
+        query: {
+          id: id
+        }
+      });
+    },
+    logsInfo(id) {
+      this.$router.push({
+        path: "/msglogs/list",
         query: {
           id: id
         }

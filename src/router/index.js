@@ -142,6 +142,25 @@ export const constantRouterMap = [
     ]
   },
 
+  {
+    path: '/msglogs',
+    component: Layout,
+    hidden: true,
+    meta: {
+      title: '日志',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'List',
+        hidden: true,
+        component: () => import('@/views/msglogs/list'),
+        meta: { title: '日志列表', icon: 'table' }
+      }
+    ]
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
 
