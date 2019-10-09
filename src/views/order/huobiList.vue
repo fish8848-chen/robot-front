@@ -11,7 +11,7 @@
         <el-table-column prop="symbol"  label="交易对" width="80px"></el-table-column>
         <el-table-column prop="robotId" label="机器人id" width="80px"></el-table-column>
         <el-table-column prop="accountId"  label="账户id"></el-table-column>
-        <el-table-column prop="strategyId"  label="策略类型" width="80px"></el-table-column>
+<!--        <el-table-column prop="strategyId"  label="策略类型" width="80px"></el-table-column>-->
 
         <el-table-column prop="price" label="价格"></el-table-column>
         <el-table-column prop="amount"  label="委托量" width="80px"></el-table-column>
