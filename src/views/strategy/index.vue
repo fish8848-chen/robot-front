@@ -3,7 +3,7 @@
     <el-tabs type="card" value="first">
       <el-tab-pane label="基础设置" name="first">
         <el-form ref="base" :model="baseInfo" label-width="140px">
-          <el-form-item label="火币策略名称:" prop="strategyName" label-width='140px' :rules="[
+          <el-form-item label="btfun策略名称:" prop="strategyName" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
@@ -11,18 +11,20 @@
             </el-col>
           </el-form-item>
 
+
           <el-form-item label="周期时间:">
             <el-row>
               <el-col>
-                <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.minSleep" :min="0.1" :max="100"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
+
+
         </el-form>
       </el-tab-pane>
-
 
       <el-tab-pane label="N档做市" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
@@ -95,7 +97,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -169,7 +171,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -207,7 +209,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -221,7 +223,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -235,7 +237,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -290,7 +292,6 @@
 
         </el-form>
       </el-tab-pane>
-
 
 
       <el-tab-pane label="机器人策略" name="four">
@@ -355,7 +356,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -368,8 +369,6 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-
-
 
 
       <el-tab-pane label="限价买入卖出">
@@ -458,7 +457,7 @@
                 v-for="item in symbols"
                 :key="item.symbol"
                 :label="item.symbol"
-                :value="`${item.baseCurrency}/${item.quoteCurrency}`"
+                :value="item.symbol"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -473,305 +472,294 @@
 
         </el-form>
       </el-tab-pane>
-      <!-- <el-tab-pane :label="title" name="last">
-
-      </el-tab-pane>-->
-
 
     </el-tabs>
-<!--    <el-row>-->
-<!--      <el-col :offset="10">-->
-<!--        <el-button type="warning" @click="onSubmit()">{{title}}</el-button>-->
-<!--      </el-col>-->
-<!--    </el-row>-->
+    <!--<el-row>
+      <el-col :offset="10">
+        <el-button type="warning" @click="submitForm('setting4')">{{title}}</el-button>
+      </el-col>
+    </el-row>  之前的按钮，在公共部分-->
   </div>
 </template>
 
 <script>
-import { addOrUpdateStrategy, getStrategyById } from "@/api/strategy.js";
-export default {
-  data() {
-    return {
-      id: "",
-      title: "创建",
-      baseInfo: {
-        strategyName: "",
-        minSleep: "0",
-        maxSleep: "2",
-        type:0,
-        pricePrecision:4,
-        amountPrecision:4
-      },
+  import { addOrUpdateStrategy, getStrategyById } from '@/api/strategy.js';
+  import { getSymbols } from "@/api/symbol.js"
 
-      setting1: {
-        able:false,
-        gears: 20,
-        minWaitTime: 1,
-        maxWaitTime: 10,
-        minEntrustAmount: 1,
-        maxEntrustAmount: 1000,
-        buyRate: "0.5",
-        sellRate :"1.2",
-        symbols: ""
-      },
-
-      setting2: {
-        able: false,
-        waitTimeMin: 0,
-        waitTimeMax: 10,
-        amountMin:1,
-        amountMax:10,
-        range:0.3,
-        symbol: ""
-      },
+  export default {
+    data() {
 
 
-    setting3: {
-        able: false,
-        sym1: "",
-        sym2: "",
-        sym3: "",
-        q1: "",
-        q2: 0,
-        q3: 0,
-        fee:0.2,
-        priceScale:2,
-        volScale:2
-      },
-
-
-      setting7: {
-        able:false,
-        symbol: "",
-        buyNum: "",
-        sellNum: "",
-        buyTotalNum: "",
-        sellTotalNum: 0,
-        buyRate: 0,
-        sellRate:0.2,
-        buyPriceLimit:2,
-        sellPriceLimit:2
-      },
-
-      setting4: {
-        able: false,
-        symbol: "",
-        volMin: "",
-        volMax: "",
-        intervalTimeMin: "",
-        intervalTimeMax: 0,
-        priceScale: 0,
-        volScale:0,
-        priceMin:0,
-        priceMax:0,
-        thresholdMin:0,
-        thresholdMax:0
-      },
-      setting5: {
-        buyStrategy: [
-          {
-            id: 1,
-            buyKlineOption: "1",
-            buyKline: "1min",
-            buyWeights: 0,
-            buyPercent: ""
-          }
-        ],
-        sellStrategy: [
-          {
-            id: 1,
-            sellKlineOption: "1",
-            sellKline: "1min",
-            sellWeights: 0,
-            sellPercent: ""
-          }
-        ]
-      },
-      setting6: {
-        isAble: false,
-        takeProfit: 0,
-        stopLoss: 0
-      },
-      //1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
-      klines: [
-        {
-          value: "1min",
-          label: "1min"
-        },
-        {
-          value: "5min",
-          label: "5min"
-        },
-        {
-          value: "15min",
-          label: "15min"
-        },
-        {
-          value: "30min",
-          label: "30min"
-        },
-        {
-          value: "60min",
-          label: "60min"
-        },
-        {
-          value: "1day",
-          label: "1day"
-        },
-        {
-          value: "1mon",
-          label: "1mon"
-        },
-        {
-          value: "1week",
-          label: "1week"
-        },
-        {
-          value: "1year",
-          label: "1year"
+      var ruleNumber = (rule, value, callback) => {
+        var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+        if (value === '') {
+          callback(new Error('请输入乘车人手机号码'));
+        } else if(!myreg.test(value)) {
+          callback(new Error('请输入正确乘车人手机号码'));
+        }else {
+          callback();
         }
-      ],
-      increS5Buy: 1,
-      increS5Sell: 1
-    };
-  },
-  created() {
-    const id = this.$route.query.id;
-    this.id = id;
-    if (this.id !== undefined) {
-      this.title = "修改";
-      var params = {
-        id: this.id
       };
-      const data = getStrategyById(params).then(data => {
-        data = data.data;
-        this.setting1 = JSON.parse(data.setting1);
-        this.setting2 = JSON.parse(data.setting2);
-        this.setting3 = JSON.parse(data.setting3);
-        this.setting4 = JSON.parse(data.setting4);
-        this.setting7 = JSON.parse(data.setting7);
-        this.baseInfo.strategyName = data.strategyName;
-        this.baseInfo.minSleep = data.minSleep;
-        this.baseInfo.maxSleep = data.maxSleep;
-        this.baseInfo.profit = data.profit;
-        this.baseInfo.sleep = data.sleep;
-        this.baseInfo.type = 0;
-        console.log(this.setting5);
-        if (this.setting6.isAble == 1) {
-          this.setting6.isAble = true;
-        }
 
-        if (data.isLimitPrice === 1) {
-          //限价
-          this.baseInfo.isLimitPrice = true;
-          this.baseInfo.buyPrice = data.buyPrice;
-          this.baseInfo.sellPrice = data.sellPrice;
 
-          if (data.isAllBuy === 1) {
-            //全部买
-            this.baseInfo.isAllBuy = true;
-          } else {
-            this.baseInfo.isAllBuy = false;
-            this.baseInfo.buyAmount = data.buyAmount;
-          }
-        } else {
-          //市价 没有购买 卖出 价格设置
-          this.baseInfo.isLimitPrice = false;
-          if (data.isAllBuy === 1) {
-            //全部买
-            this.baseInfo.isAllBuy = true;
-          } else {
-            this.baseInfo.isAllBuy = false;
-            this.baseInfo.buyQuotaPrice = data.buyQuotaPrice;
-          }
+      var sellRate = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入卖的比值'));
+        } else if(value<1 || value >2) {
+          callback(new Error('卖的比值必须在1-2之间'));
+        }else {
+          callback();
         }
-
-        if (data.isAllSell === 1) {
-          //全部卖
-          this.baseInfo.isAllSell = true;
-        } else {
-          this.baseInfo.isAllSell = false;
-          this.baseInfo.sellAmount = data.sellAmount;
-        }
-      });
-    } else {
-      title: "创建";
-    }
-  },
-  methods: {
-    async onSubmit() {
-      var requestData = {
-        id: this.id,
-        baseInfo: this.baseInfo,
-        setting1: this.setting1,
-        setting2: this.setting2,
-        setting3: this.setting3,
-        setting4: this.setting4,
-        setting7: this.setting7
       };
-      const data = await addOrUpdateStrategy(requestData);
-      if (data.code === 20000) {
-        this.$notify({
-          title: "操作成功",
-          message: this.id === undefined ? "创建成功！！！" : "修改成功！！！",
-          type: "success",
-          duration: 2000
+
+
+      return {
+
+
+        gearRules:{
+          sellRate: [{ validator: sellRate, trigger: 'blur' }]
+        },
+
+        symbols: [],
+        id: '',
+        title: '创建',
+        baseInfo: {
+          strategyName: '',
+          minSleep: '0',
+          maxSleep: '1',
+          type: 0,
+          pricePrecision:4,
+          amountPrecision:4
+        },
+        setting1: {
+          able: false,
+          gears: 20,
+          minWaitTime: 1,
+          maxWaitTime: 10,
+          minEntrustAmount: 1,
+          maxEntrustAmount: 1000,
+          buyRate: '0.5',
+          sellRate: '1.2',
+          symbols: ''
+        },
+        setting2: {
+          able: false,
+          range: '',
+          amountMin: '',
+          amountMax: 0,
+          waitTimeMin: 1,
+          waitTimeMax: 10,
+          symbol: ''
+        },
+        setting3: {
+          sym1: '',
+          sym2: '',
+          sym3: '',
+          q1: 0,
+          q2: 0,
+          q3: 0,
+          currencys: ['1'],
+          fee: 0.002,
+          able: false
+        },
+
+        setting8: {
+          able: false,
+          symbol: '',
+          traceError: 0,
+          amountMin: 1,
+          amountMax: 1000,
+        },
+
+        setting7: {
+          able: false,
+          symbol: '',
+          buyNum: 0,
+          sellNum: 0,
+          buyTotalNum: 0,
+          sellTotalNum: 0,
+          buyRate: 1.1,
+          sellRate: 0.9,
+          buyPriceLimit: 2,
+          sellPriceLimit: 2
+        },
+
+        setting4: {
+          able:false,
+          symbol: '',
+          volMax: 1000,
+          volMin: 1,
+          priceMin: 1,
+          priceMax: 10000,
+          thresholdMax: 0.3,
+          thresholdMin: 0.2
+
+        },
+
+        setting5: {
+          gears: 3,
+          priceXmin: 0.1,
+          priceXmax: 0.1,
+          minEntrustAmount: 1.1,
+          maxEntrustAmount: 1.5,
+          symbols: ''
+        },
+        setting6: {
+          isAble: false,
+          takeProfit: 0,
+          stopLoss: 0
+        },
+
+        increS5Buy: 1,
+        increS5Sell: 1
+      }
+    },
+    created() {
+      const id = this.$route.query.id
+      this.id = id;
+      this.getSymbols();
+      if (this.id !== undefined) {
+        this.title = '修改'
+        var params = {
+          id: this.id
+        }
+        const data = getStrategyById(params).then(data => {
+          data = data.data
+          this.setting1 = JSON.parse(data.setting1)
+          this.setting2 = JSON.parse(data.setting2)
+          this.setting3 = JSON.parse(data.setting3)
+          this.setting4 = JSON.parse(data.setting4)
+          this.setting5 = JSON.parse(data.setting5)
+          this.setting7 = JSON.parse(data.setting7)
+          this.setting8 = JSON.parse(data.setting8)
+
+
+          this.baseInfo.strategyName = data.strategyName
+          this.baseInfo.minSleep = data.minSleep
+          this.baseInfo.maxSleep = data.maxSleep
+          this.baseInfo.type = 1
+          for(var i = 0; i< this.setting3.currencys.length; i++){
+            this.setting3.currencys[i] = this.setting3.currencys[i] + '';
+          }
+          console.log(this.setting5)
+
+        })
+      } else {
+        title: '创建'
+      }
+    },
+    methods: {
+      changeCheckbox (e) {
+        console.log(e)
+      },
+
+      //获取交易对
+      async getSymbols() {
+        var symbolsParam = {
+          symbolsType : 0
+        }
+        const data = await getSymbols(symbolsParam);
+
+        this.symbols = data.data;
+        console.log(this.symbols,data,"symbols");
+      },
+      submitForm(formName) {
+        this.$refs[formName].validate( async (valid) => {
+          if (valid) {
+//	          onSubmit () {
+
+            if(this.baseInfo.strategyName==='')
+            {
+              this.$notify({
+                title: '警告',
+                message: '请输入策略的名称',
+                type: 'error'
+              })
+              return false;
+            }
+            var requestData = {
+              id: this.id,
+              baseInfo: this.baseInfo,
+              setting1: this.setting1,
+              setting2: this.setting2,
+              setting3: this.setting3,
+              setting4: this.setting4,
+              setting5: this.setting5,
+              setting7: this.setting7,
+              setting8: this.setting8
+            }
+
+            const data = await addOrUpdateStrategy(requestData)
+            if (data.code === 20000) {
+              this.$notify({
+                title: '操作成功',
+                message: this.id === undefined ? '创建成功！！！' : '修改成功！！！',
+                type: 'success',
+                duration: 2000
+              })
+              this.id = data.data
+              this.title = '修改'
+              // this.$router.push({ path: "/strategy/list" });
+            }
+//			      }
+
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
         });
-        this.id = data.data;
-        this.title = "修改";
-        // this.$router.push({ path: "/strategy/list" });
-      }
-    },
-    handleCreate(type) {
-      if (type === 1) {
-        this.increS5Buy = this.increS5Buy + 1;
-        const newNode = {
-          id: this.increS5Buy,
-          buyKlineOption: "1",
-          buyKline: "1min",
-          buyWeights: 0,
-          buyPercent: ""
-        };
-        this.setting5.buyStrategy.push(newNode);
-      }
-      if (type === 2) {
-        this.increS5Sell = this.increS5Sell + 1;
-        const newNode = {
-          id: this.increS5Sell,
-          sellKlineOption: "1",
-          sellKline: "1min",
-          sellWeights: 0,
-          sellPercent: ""
-        };
-        this.setting5.sellStrategy.push(newNode);
-      }
-    },
-    handleDelete(value, type) {
-      if (type === 1) {
-        if (this.setting5.buyStrategy.length === 1) {
-          this.$notify({
-            title: "警告",
-            message: "必须保留一个策略",
-            type: "warning"
-          });
-          return;
+      },
+
+      handleCreate(type) {
+        if (type === 1) {
+          this.increS5Buy = this.increS5Buy + 1
+          const newNode = {
+            id: this.increS5Buy,
+            buyKlineOption: '1',
+            buyKline: '1min',
+            buyWeights: 0,
+            buyPercent: ''
+          }
+          this.setting5.buyStrategy.push(newNode)
         }
-        this.setting5.buyStrategy.splice(value - 1, 1);
-      }
-      if (type === 2) {
-        if (this.setting5.sellStrategy.length === 1) {
-          this.$notify({
-            title: "警告",
-            message: "必须保留一个策略",
-            type: "warning"
-          });
-          return;
+        if (type === 2) {
+          this.increS5Sell = this.increS5Sell + 1
+          const newNode = {
+            id: this.increS5Sell,
+            sellKlineOption: '1',
+            sellKline: '1min',
+            sellWeights: 0,
+            sellPercent: ''
+          }
+          this.setting5.sellStrategy.push(newNode)
         }
-        this.setting5.sellStrategy.splice(value - 1, 1);
+      },
+      handleDelete(value, type) {
+        if (type === 1) {
+          if (this.setting5.buyStrategy.length === 1) {
+            this.$notify({
+              title: '警告',
+              message: '必须保留一个策略',
+              type: 'warning'
+            })
+            return
+          }
+          this.setting5.buyStrategy.splice(value - 1, 1)
+        }
+        if (type === 2) {
+          if (this.setting5.sellStrategy.length === 1) {
+            this.$notify({
+              title: '警告',
+              message: '必须保留一个策略',
+              type: 'warning'
+            })
+            return
+          }
+          this.setting5.sellStrategy.splice(value - 1, 1)
+        }
       }
     }
   }
-};
 </script>
 <style>
   .grid-content {
@@ -779,9 +767,11 @@ export default {
     min-height: 36px;
     margin-bottom: 6px;
   }
+
   .left {
     margin-left: 15px;
   }
+
   .create {
     margin-left: 600px;
     margin-top: 200px;
