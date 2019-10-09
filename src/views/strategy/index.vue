@@ -12,9 +12,9 @@
           <el-form-item label="周期时间:">
             <el-row>
               <el-col>
-              <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
-              <span>—</span>
-              <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -41,62 +41,62 @@
       </el-tab-pane>
       <el-tab-pane label="N档做市" name="second">
         <el-form ref="ngears" :model="setting1" label-width="120px" :rules="makeMarketRules">
-      <el-form-item label="是否开启:">
-        <el-switch
-          v-model="setting1.able"
-          active-color="#13ce66"
-          inactive-color="#ff4949"
-          active-text="开启"
-          inactive-text="关闭"
-        ></el-switch>
-      </el-form-item>
+          <el-form-item label="是否开启:">
+            <el-switch
+              v-model="setting1.able"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
+          </el-form-item>
 
-		  <el-form-item label="买卖挡位:">
-			<el-row>
-			  <el-input-number v-model="setting1.gears" :min="1" :max="1000"></el-input-number>
-			</el-row>
-		  </el-form-item>
+          <el-form-item label="买卖挡位:">
+            <el-row>
+              <el-input-number v-model="setting1.gears" :min="1" :max="1000"></el-input-number>
+            </el-row>
+          </el-form-item>
 
-		  <el-form-item label="盘口停留时间:">
-			<el-row>
-			  <el-col>
-			    <el-input-number v-model="setting1.minWaitTime" :min="1" :max="1000"></el-input-number>
-				<span>—</span>
-				<el-input-number v-model="setting1.maxWaitTime" :min="1" :max="1000"></el-input-number>
-			  </el-col>
-			</el-row>
-		  </el-form-item>
+          <el-form-item label="盘口停留时间:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting1.minWaitTime" :min="1" :max="1000"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="setting1.maxWaitTime" :min="1" :max="1000"></el-input-number>
+              </el-col>
+            </el-row>
+          </el-form-item>
 
-		  <el-form-item label="委托单数:">
-			<el-row>
-			  <el-col>
-			    <el-input-number v-model="setting1.minEntrustAmount" :min="1" :max="1000"></el-input-number>
-				<span>—</span>
-				<el-input-number v-model="setting1.maxEntrustAmount" :min="1" :max="1000"></el-input-number>
-			  </el-col>
-			</el-row>
-		  </el-form-item>
+          <el-form-item label="委托单数:">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting1.minEntrustAmount" :min="1" :max="1000"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="setting1.maxEntrustAmount" :min="1" :max="1000"></el-input-number>
+              </el-col>
+            </el-row>
+          </el-form-item>
 
-		  <el-form-item label="买比值:">
-			<el-row>
-			  <el-col :span="5">
-			    <el-input v-model="setting1.buyRate"></el-input>
-			  </el-col>
-			</el-row>
-		  </el-form-item>
+          <el-form-item label="买比值:">
+            <el-row>
+              <el-col :span="5">
+                <el-input v-model="setting1.buyRate"></el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
 
-		  <el-form-item label="卖比值:">
-			<el-row>
-			  <el-col :span="5">
-			    <el-input v-model="setting1.sellRate"></el-input>
-			  </el-col>
-			</el-row>
-		  </el-form-item>
-      <el-form-item label="交易对:">
-        <el-col :span="6">
-          <el-input v-model="setting1.symbols" placeholder="交易对格式: usdtotc,eoseth,"/>
-        </el-col>
-      </el-form-item>
+          <el-form-item label="卖比值:">
+            <el-row>
+              <el-col :span="5">
+                <el-input v-model="setting1.sellRate"></el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
+          <el-form-item label="交易对:">
+            <el-col :span="6">
+              <el-input v-model="setting1.symbols" placeholder="交易对格式: usdtotc,eoseth,"/>
+            </el-col>
+          </el-form-item>
         </el-form>
       </el-tab-pane>
 
@@ -629,16 +629,16 @@ export default {
 };
 </script>
 <style>
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-  margin-bottom: 6px;
-}
-.left {
-  margin-left: 15px;
-}
-.create {
-  margin-left: 600px;
-  margin-top: 200px;
-}
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+    margin-bottom: 6px;
+  }
+  .left {
+    margin-left: 15px;
+  }
+  .create {
+    margin-left: 600px;
+    margin-top: 200px;
+  }
 </style>

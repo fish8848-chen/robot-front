@@ -119,7 +119,7 @@ export const constantRouterMap = [
   {
     path: '/order',
     component: Layout,
-    hidden: true,
+    hidden: false,
     meta: {
       title: '订单',
       icon: 'nested'
@@ -128,9 +128,16 @@ export const constantRouterMap = [
       {
         path: 'list',
         name: 'List',
-        hidden: true,
+        hidden: false,
         component: () => import('@/views/order/list'),
-        meta: { title: '订单列表', icon: 'table' }
+        meta: { title: 'btfun订单列表', icon: 'table' }
+      },
+      {
+        path: 'huobiList',
+        name: 'HuobiList',
+        hidden: false,
+        component: () => import('@/views/order/huobiList'),
+        meta: { title: '火币订单列表', icon: 'table' }
       },
       {
         path: 'profit',

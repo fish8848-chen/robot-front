@@ -7,6 +7,20 @@ export function getOrdersByRid(params) {
         params
     })
 }
+export function listBtfunOrder(params) {
+  return request({
+    url: '/order/listBtfunOrder',
+    method: 'get',
+    params
+  })
+}
+export function listHuobiOrder(params) {
+  return request({
+    url: '/order/listHuobiOrder',
+    method: 'get',
+    params
+  })
+}
 export function getProfitInfo(params) {
     return request({
         url: '/orderProfit/list',
