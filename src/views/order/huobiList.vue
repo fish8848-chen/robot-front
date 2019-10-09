@@ -6,12 +6,14 @@
     <div style="magin:20px">
       <el-table :data="tableData" stripe border style="width: 100%">
         <el-table-column prop="id"  label="订单id"></el-table-column>
-        <el-table-column prop="orderNo"  label="订单id"></el-table-column>
+        <el-table-column prop="order_no"  label="订单id"></el-table-column>
 
         <el-table-column prop="symbol"  label="交易对" width="80px"></el-table-column>
-        <el-table-column prop="robotId" label="机器人id" width="80px"></el-table-column>
-        <el-table-column prop="accountId"  label="账户id"></el-table-column>
-<!--        <el-table-column prop="strategyId"  label="策略类型" width="80px"></el-table-column>-->
+        <el-table-column prop="robot_id" label="机器人id" width="80px"></el-table-column>
+        <el-table-column prop="robot_name" label="机器人名称" width="80px"></el-table-column>
+        <el-table-column prop="account_id"  label="账户id"></el-table-column>
+        <el-table-column prop="strategy_id"  label="策略id" width="80px"></el-table-column>
+        <el-table-column prop="strategy_name"  label="策略名称" width="80px"></el-table-column>
 
         <el-table-column prop="price" label="价格"></el-table-column>
         <el-table-column prop="amount"  label="委托量" width="80px"></el-table-column>
@@ -31,9 +33,9 @@
         <!--          </template>-->
         <!--        </el-table-column>-->
 
-        <el-table-column prop="createTime"  label="创建时间">
+        <el-table-column prop="create_time"  label="创建时间">
           <template slot-scope="scope">
-            <span>{{ scope.row.createTime | formatDate }}</span>
+            <span>{{ scope.row.create_time | formatDate }}</span>
           </template>
         </el-table-column>
 
@@ -48,8 +50,8 @@
     <pagination
       v-show="total>0"
       :total="total"
-      :page.sync="listQuery.page"
-      :limit.sync="listQuery.limit"
+      :page.sync="listQuery.current"
+      :limit.sync="listQuery.size"
       @pagination="getOrders"
     />
   </div>
@@ -88,8 +90,8 @@
         total: 1,
         listQuery: {
           rid: "",
-          page: 1,
-          limit: 10
+          current: 1,
+          size: 10
         }
       };
     },
