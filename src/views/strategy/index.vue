@@ -63,9 +63,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="1000" :step="0.5"></el-input-number>
+                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="1000000" :step="0.5"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting1.maxEntrustAmount" :min="0" :max="1000" :step="0.5"></el-input-number>
+                <el-input-number v-model="setting1.maxEntrustAmount" :min="0" :max="1000000" :step="0.5"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -144,9 +144,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting2.amountMin" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.amountMin" :min="1" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting2.amountMax" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.amountMax" :min="1" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -346,7 +346,7 @@
 
 
 
-          <el-form-item label="交易对选择:" prop="autosymbol" label-width='240px'  :rules="[
+          <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
 			      { required: true, message: '请选择交易对'}
 			    ]">
             <el-select :filterable="true" v-model="setting4.symbol" placeholder="请选择交易对">
