@@ -329,7 +329,7 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="买卖一档的价格区间过小则不交易:"  prop="thresholdMin"  label-width='240px'  :rules="[
+          <el-form-item label="买卖一档的价格超出区间则不交易:"  prop="thresholdMin"  label-width='240px'  :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
@@ -346,7 +346,7 @@
 
 
 
-          <el-form-item label="交易对选择:" prop="autosymbol" label-width='240px'  :rules="[
+          <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
 			      { required: true, message: '请选择交易对'}
 			    ]">
             <el-select :filterable="true" v-model="setting4.symbol" placeholder="请选择交易对">
