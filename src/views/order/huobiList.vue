@@ -5,18 +5,18 @@
     </div>
     <div style="magin:20px">
       <el-table :data="tableData" stripe border style="width: 100%">
-        <el-table-column prop="id"  label="订单id"></el-table-column>
-        <el-table-column prop="order_no"  label="订单id"></el-table-column>
+        <el-table-column prop="id"  label="序号" width="50px"></el-table-column>
+        <el-table-column prop="order_no"  label="订单id" width="200px"></el-table-column>
 
         <el-table-column prop="symbol"  label="交易对" width="80px"></el-table-column>
+        <el-table-column prop="account_id"  label="账户id" width="100px"></el-table-column>
         <el-table-column prop="robot_id" label="机器人id" width="80px"></el-table-column>
-        <el-table-column prop="robot_name" label="机器人名称" width="80px"></el-table-column>
-        <el-table-column prop="account_id"  label="账户id"></el-table-column>
+        <el-table-column prop="robot_name" label="机器人名称" width="200px"></el-table-column>
         <el-table-column prop="strategy_id"  label="策略id" width="80px"></el-table-column>
-        <el-table-column prop="strategy_name"  label="策略名称" width="80px"></el-table-column>
+        <el-table-column prop="strategy_name"  label="策略名称" width="200px"></el-table-column>
 
-        <el-table-column prop="price" label="价格"></el-table-column>
-        <el-table-column prop="amount"  label="委托量" width="80px"></el-table-column>
+        <el-table-column prop="price" label="价格" width="100px"></el-table-column>
+        <el-table-column prop="amount"  label="委托量" width="100px"></el-table-column>
         <el-table-column prop="direction"  label="买卖方向" width="80px">
           <template slot-scope="scope">
             <span>{{ scope.row.direction| formatOrderType }}</span>
