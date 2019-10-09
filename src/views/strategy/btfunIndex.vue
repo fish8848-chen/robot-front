@@ -9,7 +9,6 @@
             <el-col :span="6">
               <el-input v-model="baseInfo.strategyName" placeholder="请不要些重名"/>
             </el-col>
-
           </el-form-item>
 
 
