@@ -311,22 +311,20 @@
 			    ]">
             <el-row>
               <el-col >
-                <el-input-number v-model="setting4.volMin" :min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.volMin" :min="0" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.volMax" :min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.volMax" :min="0" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
 
 
-          <el-form-item label="默认执行买卖一档区间:" prop="priceMin"  label-width='240px'  :rules="[
-			      { required: true, message: '该项不能为空'}
-			    ]">
+          <el-form-item label="价格区间(不填默认执行买卖一档区间):" prop="priceMin"  label-width='240px'>
             <el-row>
               <el-col>
-                <el-input-number v-model="setting4.priceMin" :min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.priceMin" :min="0" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.priceMax" :min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.priceMax" :min="0" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -336,9 +334,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting4.thresholdMin" :min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.thresholdMin" :min="0" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.thresholdMax" :min="1" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.thresholdMax" :min="0" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
