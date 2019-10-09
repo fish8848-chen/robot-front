@@ -318,7 +318,7 @@
           </el-form-item>
 
 
-          <el-form-item label="默认执行买卖一档区间:" prop="priceMin"  label-width='240px'  :rules="[
+          <el-form-item label="价格区间(默认执行买卖一档区间):" prop="priceMin"  label-width='240px'  :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
