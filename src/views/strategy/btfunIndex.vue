@@ -319,7 +319,7 @@
           </el-form-item>
 
 
-          <el-form-item label="价格区间(不填默认执行买卖一档区间):" prop="priceMin"  label-width='240px'>
+          <el-form-item label="价格区间(不填默认执行买卖一档区间):" prop="priceMin"  label-width='250px'>
             <el-row>
               <el-col>
                 <el-input-number v-model="setting4.priceMin" :min="0" :max="100000"></el-input-number>
