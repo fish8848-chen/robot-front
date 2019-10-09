@@ -17,7 +17,7 @@
               <el-col>
                 <el-input-number v-model="baseInfo.minSleep" :min="0.1" :max="100"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -635,7 +635,7 @@
           this.baseInfo.strategyName = data.strategyName
           this.baseInfo.minSleep = data.minSleep
           this.baseInfo.maxSleep = data.maxSleep
-          this.baseInfo.type = 1
+          this.baseInfo.type = 0
           for(var i = 0; i< this.setting3.currencys.length; i++){
             this.setting3.currencys[i] = this.setting3.currencys[i] + '';
           }
