@@ -13,10 +13,10 @@
           </el-form-item>
 
 
-          <el-form-item label="周期时间:">
+          <el-form-item label="周期时间(取整数):">
             <el-row>
               <el-col>
-                <el-input-number v-model="baseInfo.minSleep" :min="0.1" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
               </el-col>
@@ -30,7 +30,7 @@
       <el-tab-pane label="N档做市" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
           <el-form-item />
-          <el-form-item label="买卖挡位:" prop="gears" label-width='140px' :rules="[
+          <el-form-item label="买卖挡位(取整数):" prop="gears" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
@@ -38,7 +38,7 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="盘口停留时间:"prop="minWaitTime" label-width='140px' :rules="[
+          <el-form-item label="盘口停留时间(取整数):"prop="minWaitTime" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
@@ -110,7 +110,7 @@
         <el-form ref="setting2" :model="setting2" label-width="120px">
           <el-form-item />
 
-          <el-form-item label="订单停留时间:" prop="waitTimeMin" label-width='140px' :rules="[
+          <el-form-item label="订单停留时间(取整数):" prop="waitTimeMin" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
@@ -596,8 +596,8 @@
         title: '创建',
         baseInfo: {
           strategyName: '',
-          minSleep: '0',
-          maxSleep: '1',
+          minSleep: 3,
+          maxSleep: 5,
           type: 1,
           pricePrecision:4,
           amountPrecision:4,
