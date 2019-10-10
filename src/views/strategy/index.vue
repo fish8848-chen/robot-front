@@ -3,6 +3,7 @@
     <el-tabs type="card" value="first">
       <el-tab-pane label="基础设置" name="first">
         <el-form ref="base" :model="baseInfo" label-width="140px">
+          <el-form-item />
           <el-form-item label="btfun策略名称:" prop="strategyName" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
@@ -28,15 +29,8 @@
 
       <el-tab-pane label="N档做市" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting1.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
+
 
           <el-form-item label="买卖挡位:" prop="gears" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
@@ -116,15 +110,7 @@
 
       <el-tab-pane label="一档做市" name="third">
         <el-form ref="setting2" :model="setting2" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting2.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
 
 
           <el-form-item label="订单停留时间:" prop="waitTimeMin" label-width='140px' :rules="[
@@ -190,15 +176,7 @@
 
       <el-tab-pane label="三角套利策略" name="fourth">
         <el-form ref="setting3" :model="setting3" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting3.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
 
 
           <el-form-item label="交易对1:" prop="sym1" label-width='140px'  :rules="[
@@ -296,15 +274,7 @@
 
       <el-tab-pane label="机器人策略" name="four">
         <el-form ref="setting4" :model="setting4" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting4.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
 
           <el-form-item label="交易对的买卖数量区间:" prop="volMin" label-width='240px' :rules="[
 			      { required: true, message: '该项不能为空'}
@@ -371,15 +341,7 @@
 
       <el-tab-pane label="限价买入卖出">
         <el-form ref="setting7" :model="setting7" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting7.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
 
           <el-form-item label="交易量（买）:" prop="buyNum"  label-width='240px'  :rules="[
 			      { required: true, message: '交易量（买）不能为空'}
@@ -675,6 +637,7 @@
               })
               return false;
             }
+            this.baseInfo.checkType = formName;
             var requestData = {
               id: this.id,
               baseInfo: this.baseInfo,

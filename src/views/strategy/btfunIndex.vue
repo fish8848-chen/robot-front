@@ -3,6 +3,7 @@
     <el-tabs type="card" value="first">
       <el-tab-pane label="基础设置" name="first">
         <el-form ref="base" :model="baseInfo" label-width="140px">
+          <el-form-item />
           <el-form-item label="btfun策略名称:" prop="strategyName" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
@@ -28,16 +29,7 @@
 
       <el-tab-pane label="N档做市" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting1.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
-
+          <el-form-item />
           <el-form-item label="买卖挡位:" prop="gears" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
@@ -116,16 +108,7 @@
 
       <el-tab-pane label="一档做市" name="third">
         <el-form ref="setting2" :model="setting2" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting2.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
-
+          <el-form-item />
 
           <el-form-item label="订单停留时间:" prop="waitTimeMin" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
@@ -190,17 +173,7 @@
 
       <el-tab-pane label="三角套利策略" name="fourth">
         <el-form ref="setting3" :model="setting3" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting3.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
-
-
+          <el-form-item />
           <el-form-item label="交易对1:" prop="sym1" label-width='140px'  :rules="[
 			      { required: true, message: '请选择交易对'}
 			    ]">
@@ -296,16 +269,7 @@
 
       <el-tab-pane label="机器人策略" name="four">
         <el-form ref="setting4" :model="setting4" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting4.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
-
+          <el-form-item />
           <el-form-item label="交易对的买卖数量区间:" prop="volMin" label-width='240px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
@@ -342,10 +306,6 @@
           </el-form-item>
 
 
-
-
-
-
           <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
 			      { required: true, message: '请选择交易对'}
 			    ]">
@@ -371,16 +331,7 @@
 
       <el-tab-pane label="限价买入卖出">
         <el-form ref="setting7" :model="setting7" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting7.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
-
+          <el-form-item />
           <el-form-item label="交易量（买）:" prop="buyNum"  label-width='240px'  :rules="[
 			      { required: true, message: '交易量（买）不能为空'}
 			    ]">
@@ -478,15 +429,7 @@
 
       <el-tab-pane label="主流币价格对标" name="eight">
         <el-form ref="setting8" :model="setting8" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting8.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
 
           <el-form-item label="交易对选择:" prop="symbol" label-width='240px'  :rules="[
 			      { required: true, message: '请选择交易对'}
@@ -536,15 +479,7 @@
 
       <el-tab-pane label="btfun的N档做市" name="five">
         <el-form ref="setting5" :model="setting5" label-width="120px">
-          <el-form-item label="是否开启:">
-            <el-switch
-              v-model="setting5.able"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="开启"
-              inactive-text="关闭"
-            ></el-switch>
-          </el-form-item>
+          <el-form-item />
 
           <el-form-item label="买卖挡位:" prop="gears"  label-width='140px'  :rules="[
 			      { required: true, message: '买卖档位不能为空'}
@@ -665,10 +600,10 @@
           maxSleep: '1',
           type: 1,
           pricePrecision:4,
-          amountPrecision:4
+          amountPrecision:4,
+          checkType:''
         },
         setting1: {
-          able: false,
           gears: 20,
           minWaitTime: 1,
           maxWaitTime: 10,
@@ -679,7 +614,6 @@
           symbols: ''
         },
         setting2: {
-          able: false,
           range: '',
           amountMin: '',
           amountMax: 0,
@@ -695,12 +629,10 @@
           q2: 0,
           q3: 0,
           currencys: ['1'],
-          fee: 0.002,
-          able: false
+          fee: 0.002
         },
 
         setting8: {
-          able: false,
           symbol: '',
           traceError: 0,
           amountMin: 1,
@@ -708,7 +640,6 @@
         },
 
         setting7: {
-          able: false,
           symbol: '',
           buyNum: 0,
           sellNum: 0,
@@ -721,7 +652,6 @@
         },
 
         setting4: {
-          able:false,
           symbol: '',
           volMax: 1000,
           volMin: 1,
@@ -741,7 +671,6 @@
           symbols: ''
         },
         setting6: {
-          isAble: false,
           takeProfit: 0,
           stopLoss: 0
         },
@@ -813,6 +742,7 @@
               })
               return false;
             }
+            this.baseInfo.checkType = formName;
 			        var requestData = {
 			          id: this.id,
 			          baseInfo: this.baseInfo,
