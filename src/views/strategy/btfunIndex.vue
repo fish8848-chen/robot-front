@@ -8,7 +8,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="baseInfo.strategyName" placeholder="请不要些重名"/>
+              <el-input v-model="baseInfo.strategyName" placeholder="请不要写重名"/>
             </el-col>
           </el-form-item>
 
@@ -16,9 +16,9 @@
           <el-form-item label="周期时间(取整数):">
             <el-row>
               <el-col>
-                <el-input-number v-model="baseInfo.minSleep" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.minSleep" :precision="0" :min="0" :max="10000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="baseInfo.maxSleep" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="baseInfo.maxSleep" :precision="0" :min="baseInfo.minSleep" :max="10000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -30,22 +30,22 @@
       <el-tab-pane label="N档委托" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
           <el-form-item />
-          <el-form-item label="买卖挡位(取整数):" prop="gears" label-width='140px' :rules="[
+          <el-form-item label="买卖挡位(取整数):"  prop="gears" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
-              <el-input-number v-model="setting1.gears" :min="1" :max="1000" :step="0.5"></el-input-number>
+              <el-input-number v-model="setting1.gears" :precision="0" :min="2" :max="1000" :step="1"></el-input-number>
             </el-row>
           </el-form-item>
 
-          <el-form-item label="盘口停留时间(取整数):"prop="minWaitTime" label-width='140px' :rules="[
+          <el-form-item label="盘口停留时间(取整数):" prop="minWaitTime" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting1.minWaitTime" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting1.minWaitTime" :precision="0" :min="0" :max="1000"/>
                 <span>—</span>
-                <el-input-number v-model="setting1.maxWaitTime" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting1.maxWaitTime" :precision="0" :min="setting1.minWaitTime" :max="1000"/>
               </el-col>
             </el-row>
           </el-form-item>
@@ -55,9 +55,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="1000" :step="0.5"></el-input-number>
+                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="1000" :step="0.1"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting1.maxEntrustAmount" :min="0" :max="1000" :step="0.5"></el-input-number>
+                <el-input-number v-model="setting1.maxEntrustAmount" :min="setting1.minEntrustAmount" :max="1000" :step="0.1"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -75,7 +75,7 @@
           <el-form-item label="卖N档(相对于卖一档)比值:" prop="sellRate" label-width='140px' >
             <el-row>
               <el-col :span="5">
-                <el-input-number v-model="setting1.sellRate" :min="1.01" :max="10" :step="0.05"></el-input-number>
+                <el-input-number v-model="setting1.sellRate" :min="1" :max="10" :step="0.05"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -110,14 +110,14 @@
         <el-form ref="setting2" :model="setting2" label-width="120px">
           <el-form-item />
 
-          <el-form-item label="订单停留时间(取整数):" prop="waitTimeMin" label-width='140px' :rules="[
+          <el-form-item label="订单停留时间(取整数):"  prop="waitTimeMin" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting2.waitTimeMin" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.waitTimeMin" :precision="0" :min="0" :max="1000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting2.waitTimeMax" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.waitTimeMax" :precision="0" :min="setting2.waitTimeMin" :max="1000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -127,9 +127,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting2.amountMin" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.amountMin" :min="0" :max="1000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting2.amountMax" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.amountMax" :min="setting2.amountMin" :max="1000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -140,7 +140,7 @@
 			    ]">
             <el-row>
               <el-col :span="5">
-                <el-input-number v-model="setting2.range" :min="0" :max="100"></el-input-number>
+                <el-input-number v-model="setting2.range" :min="0" :max="1"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -277,7 +277,7 @@
               <el-col >
                 <el-input-number v-model="setting4.volMin" :min="0" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.volMax" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.volMax" :min="0" :max="setting4.volMin"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -288,7 +288,7 @@
               <el-col>
                 <el-input-number v-model="setting4.priceMin" :min="0" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.priceMax" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.priceMax" :min="setting4.priceMin" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -300,7 +300,7 @@
               <el-col>
                 <el-input-number v-model="setting4.thresholdMin" :min="0" :max="100000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.thresholdMax" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.thresholdMax" :min="setting4.thresholdMin" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -336,7 +336,7 @@
 			      { required: true, message: '交易量（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.buyNum" :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.buyNum" :min="0" :max="100000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -344,7 +344,7 @@
 			      { required: true, message: '交易量（卖）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.sellNum" :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.sellNum" :min="0" :max="100000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -352,7 +352,7 @@
 			      { required: true, message: '总交易量（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.buyTotalNum"  :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.buyTotalNum"  :min="0" :max="1000000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -360,7 +360,7 @@
 			      { required: true, message: '总交易量（卖）不能为空'}
 			    ]">
             <el-col :span ="6">
-              <el-input-number v-model="setting7.sellTotalNum"  :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.sellTotalNum"  :min="0" :max="1000000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -368,7 +368,7 @@
 			      { required: true, message: '买入交易价格倍数不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.buyRate"  :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.buyRate"  :min="1" :max="10000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -377,7 +377,7 @@
 			      { required: true, message: '卖出交易价格倍数不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.sellRate"  :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.sellRate"  :min="0" :max="1"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -385,7 +385,7 @@
 			      { required: true, message: '实时价格最低最高限买（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.buyPriceLimit"  :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.buyPriceLimit"  :min="0" :max="100000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -393,7 +393,7 @@
 			      { required: true, message: '实时价格最低最高限制（卖）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.sellPriceLimit"  :min="0" :max="10000"></el-input-number>
+              <el-input-number v-model="setting7.sellPriceLimit"  :min="0" :max="100000"></el-input-number>
             </el-col>
           </el-form-item>
 
@@ -460,7 +460,7 @@
             <el-col >
               <el-input-number v-model="setting8.amountMin" :min="0" :max="100000"/>
               <span>—</span>
-              <el-input-number v-model="setting8.amountMax" :min="0" :max="100000"/>
+              <el-input-number v-model="setting8.amountMax" :min="setting8.amountMin" :max="100000"/>
             </el-col>
             </el-row>
           </el-form-item>
@@ -485,7 +485,7 @@
 			      { required: true, message: '买卖档位不能为空'}
 			    ]">
             <el-row>
-              <el-input-number v-model="setting5.gears" :min="1" :max="1000"></el-input-number>
+              <el-input-number v-model="setting5.gears" :precision="0" :min="1" :max="1000"></el-input-number>
             </el-row>
           </el-form-item>
 
@@ -494,9 +494,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting5.priceXmin" :min="0" :max="10000"/>
+                <el-input-number v-model="setting5.priceXmin" :min="0" :max="1000"/>
                 <span>—</span>
-                <el-input-number v-model="setting5.priceXmax" :min="0" :max="1000"/>
+                <el-input-number v-model="setting5.priceXmax" :min="setting5.priceXmin" :max="1000"/>
               </el-col>
             </el-row>
           </el-form-item>
@@ -508,7 +508,7 @@
               <el-col>
                 <el-input-number v-model="setting5.minEntrustAmount" :min="0" :max="100000"/>
                 <span>—</span>
-                <el-input-number v-model="setting5.maxEntrustAmount" :min="0" :max="100000"/>
+                <el-input-number v-model="setting5.maxEntrustAmount" :min="setting5.minEntrustAmount" :max="100000"/>
               </el-col>
             </el-row>
           </el-form-item>
@@ -615,7 +615,7 @@
         },
         setting2: {
           range: '',
-          amountMin: '',
+          amountMin: 0,
           amountMax: 0,
           waitTimeMin: 1,
           waitTimeMax: 10,
@@ -714,6 +714,17 @@
       }
     },
     methods: {
+      // changeInputNumber(mark){
+      //   if((+this.setting1.maxWaitTime - +this.setting1.minWaitTime)<0){
+      //     this.$notify({
+      //       title: "警告",
+      //       message: "后面的数必须大于等于前面的数",
+      //       type: "warning",
+      //       duration: 2000
+      //     });
+      //     this.setting1.maxWaitTime = this.setting1.minWaitTime
+      //   }
+      // },
       changeCheckbox (e) {
         console.log(e)
       },
