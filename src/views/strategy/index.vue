@@ -558,8 +558,8 @@
 
         setting5: {
           gears: 3,
-          priceXmin: 0.1,
-          priceXmax: 0.1,
+          priceXmin: 0,
+          priceXmax: 1000,
           minEntrustAmount: 0,
           maxEntrustAmount: 100000,
           symbols: ''
