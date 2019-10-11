@@ -16,7 +16,7 @@
           <el-form-item label="周期时间(取整数):">
             <el-row>
               <el-col>
-                <el-input-number v-model="baseInfo.minSleep" :precision="0" :min="0" :max="10000"></el-input-number>
+                <el-input-number v-model="baseInfo.minSleep" :precision="0" :min="0" :max="baseInfo.maxSleep"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="baseInfo.maxSleep" :precision="0" :min="baseInfo.minSleep" :max="10000"></el-input-number>
               </el-col>
@@ -45,7 +45,7 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting1.minWaitTime" :precision="0" :min="0" :max="1000"></el-input-number>
+                <el-input-number v-model="setting1.minWaitTime" :precision="0" :min="0" :max="setting1.maxWaitTime"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting1.maxWaitTime" :precision="0" :min="setting1.minWaitTime" :max="1000"></el-input-number>
               </el-col>
@@ -57,7 +57,7 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="1000000" :step="0.1"></el-input-number>
+                <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="setting1.maxEntrustAmount" :step="0.1"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting1.maxEntrustAmount" :min="setting1.minEntrustAmount" :max="1000000" :step="0.1"></el-input-number>
               </el-col>
@@ -118,7 +118,7 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting2.waitTimeMin" :precision="0" :min="0" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.waitTimeMin" :precision="0" :min="0" :max="setting2.waitTimeMax"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting2.waitTimeMax" :precision="0" :min="setting2.waitTimeMin" :max="1000"></el-input-number>
               </el-col>
@@ -130,7 +130,7 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting2.amountMin" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting2.amountMin" :min="0" :max="setting2.amountMax"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting2.amountMax" :min="setting2.amountMin" :max="100000"></el-input-number>
               </el-col>
@@ -281,7 +281,7 @@
 			    ]">
             <el-row>
               <el-col >
-                <el-input-number v-model="setting4.volMin" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.volMin" :min="0" :max="setting4.volMax"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting4.volMax" :min="setting4.volMin" :max="100000"></el-input-number>
               </el-col>
@@ -292,7 +292,7 @@
           <el-form-item label="价格区间(两个0默认执行买卖一档区间):" prop="priceMin"  label-width='250px'>
             <el-row>
               <el-col>
-                <el-input-number v-model="setting4.priceMin" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.priceMin" :min="0" :max="setting4.priceMax"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting4.priceMax" :min="setting4.priceMin" :max="100000"></el-input-number>
               </el-col>
@@ -304,7 +304,7 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting4.thresholdMin" :min="0" :max="100000"></el-input-number>
+                <el-input-number v-model="setting4.thresholdMin" :min="0" :max="setting4.thresholdMax"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting4.thresholdMax" :min="setting4.thresholdMin" :max="100000"></el-input-number>
               </el-col>
@@ -485,8 +485,8 @@
         title: '创建',
         baseInfo: {
           strategyName: '',
-          minSleep: 3,
-          maxSleep: 5,
+          minSleep: 0,
+          maxSleep: 1000,
           type: 0,
           pricePrecision:4,
           amountPrecision:4
@@ -495,9 +495,9 @@
           able: false,
           gears: 20,
           minWaitTime: 1,
-          maxWaitTime: 10,
-          minEntrustAmount: 1,
-          maxEntrustAmount: 1000,
+          maxWaitTime: 10000,
+          minEntrustAmount: 0,
+          maxEntrustAmount: 100000,
           buyRate: '0.5',
           sellRate: '1.2',
           symbols: ''
@@ -506,7 +506,7 @@
           able: false,
           range: '',
           amountMin: 0,
-          amountMax: 0,
+          amountMax: 100000,
           waitTimeMin: 1,
           waitTimeMax: 10,
           symbol: ''
@@ -527,8 +527,8 @@
           able: false,
           symbol: '',
           traceError: 0,
-          amountMin: 1,
-          amountMax: 1000,
+          amountMin: 0,
+          amountMax: 100000,
         },
 
         setting7: {
@@ -547,12 +547,12 @@
         setting4: {
           able:false,
           symbol: '',
-          volMax: 1000,
-          volMin: 1,
-          priceMin: 1,
-          priceMax: 10000,
-          thresholdMax: 0.3,
-          thresholdMin: 0.2
+          volMax: 100000,
+          volMin: 0,
+          priceMin: 0,
+          priceMax: 100000,
+          thresholdMax: 1000,
+          thresholdMin: 0
 
         },
 
@@ -560,8 +560,8 @@
           gears: 3,
           priceXmin: 0.1,
           priceXmax: 0.1,
-          minEntrustAmount: 1.1,
-          maxEntrustAmount: 1.5,
+          minEntrustAmount: 0,
+          maxEntrustAmount: 100000,
           symbols: ''
         },
         setting6: {
