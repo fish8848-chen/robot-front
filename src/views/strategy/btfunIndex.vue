@@ -8,7 +8,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="baseInfo.strategyName" placeholder="请不要写重名"/>
+              <el-input v-model="baseInfo.strategyName"  placeholder="请不要写重名" maxlength="30" show-word-limit/>
             </el-col>
           </el-form-item>
 

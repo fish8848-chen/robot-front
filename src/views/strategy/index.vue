@@ -4,11 +4,11 @@
       <el-tab-pane label="基础设置" name="first">
         <el-form ref="base" :model="baseInfo" label-width="140px">
           <el-form-item />
-          <el-form-item label="btfun策略名称:" prop="strategyName" label-width='140px' :rules="[
+          <el-form-item label="火币策略名称:" prop="strategyName" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="baseInfo.strategyName" placeholder="请不要写重名"/>
+              <el-input v-model="baseInfo.strategyName" placeholder="请不要写重名" maxlength="30" show-word-limit/>
             </el-col>
           </el-form-item>
 
@@ -47,7 +47,7 @@
               <el-col>
                 <el-input-number v-model="setting1.minWaitTime" :precision="0" :min="0" :max="1000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting1.maxWaitTime" :precision="setting1.minWaitTime" :min="0" :max="1000"></el-input-number>
+                <el-input-number v-model="setting1.maxWaitTime" :precision="0" :min="setting1.minWaitTime" :max="1000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -120,7 +120,7 @@
               <el-col>
                 <el-input-number v-model="setting2.waitTimeMin" :precision="0" :min="0" :max="1000"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting2.waitTimeMax" :precision="setting2.waitTimeMin" :min="1" :max="1000"></el-input-number>
+                <el-input-number v-model="setting2.waitTimeMax" :precision="0" :min="setting2.waitTimeMin" :max="1000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
