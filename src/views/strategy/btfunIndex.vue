@@ -477,7 +477,7 @@
       </el-tab-pane>
 
 
-      <el-tab-pane label="btfun的N档做市" name="five">
+      <el-tab-pane label="btfun自动委托挂单" name="five">
         <el-form ref="setting5" :model="setting5" label-width="120px">
           <el-form-item />
 
