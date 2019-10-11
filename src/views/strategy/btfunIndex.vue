@@ -277,7 +277,7 @@
               <el-col >
                 <el-input-number v-model="setting4.volMin" :min="0" :max="setting4.volMax"></el-input-number>
                 <span>—</span>
-                <el-input-number v-model="setting4.volMax" :min="0" :max="setting4.volMin"></el-input-number>
+                <el-input-number v-model="setting4.volMax" :min="setting4.volMin" :max="100000"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
