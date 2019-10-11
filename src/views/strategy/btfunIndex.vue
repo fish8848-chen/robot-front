@@ -135,7 +135,7 @@
           </el-form-item>
 
 
-          <el-form-item label="买卖比值:" prop="range" label-width='140px' :rules="[
+          <el-form-item label="买卖比值(减一):" prop="range" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
