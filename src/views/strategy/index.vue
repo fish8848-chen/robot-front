@@ -505,7 +505,7 @@
         setting2: {
           able: false,
           range: '',
-          amountMin: '',
+          amountMin: 0,
           amountMax: 0,
           waitTimeMin: 1,
           waitTimeMax: 10,
