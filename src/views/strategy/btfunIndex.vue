@@ -477,7 +477,7 @@
       </el-tab-pane>
 
 
-      <el-tab-pane label="btfun的N档做市" name="five">
+      <el-tab-pane label="btfun自动委托挂单" name="five">
         <el-form ref="setting5" :model="setting5" label-width="120px">
           <el-form-item />
 
@@ -494,9 +494,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting5.priceXmin"/>
+                <el-input-number v-model="setting5.priceXmin" :min="0" :max="10000"/>
                 <span>—</span>
-                <el-input-number v-model="setting5.priceXmax"/>
+                <el-input-number v-model="setting5.priceXmax" :min="0" :max="1000"/>
               </el-col>
             </el-row>
           </el-form-item>
@@ -506,9 +506,9 @@
 			    ]">
             <el-row>
               <el-col>
-                <el-input-number v-model="setting5.minEntrustAmount"/>
+                <el-input-number v-model="setting5.minEntrustAmount" :min="0" :max="100000"/>
                 <span>—</span>
-                <el-input-number v-model="setting5.maxEntrustAmount"/>
+                <el-input-number v-model="setting5.maxEntrustAmount" :min="0" :max="100000"/>
               </el-col>
             </el-row>
           </el-form-item>
