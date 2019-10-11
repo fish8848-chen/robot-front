@@ -744,7 +744,7 @@
 	        if (valid) {
 //	          onSubmit () {
 
-            if(this.baseInfo.strategyName==='')
+            if(this.baseInfo.strategyName.trim()==='')
             {
               this.$notify({
                 title: '警告',

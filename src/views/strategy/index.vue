@@ -628,7 +628,7 @@
           if (valid) {
 //	          onSubmit () {
 
-            if(this.baseInfo.strategyName==='')
+            if(this.baseInfo.strategyName.trim()==='')
             {
               this.$notify({
                 title: '警告',
@@ -662,6 +662,7 @@
               this.title = '修改'
               // this.$router.push({ path: "/strategy/list" });
             }
+
 //			      }
 
           } else {
