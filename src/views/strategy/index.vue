@@ -27,7 +27,7 @@
         </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="N档做市" name="second">
+      <el-tab-pane label="N档委托" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px" :rules="gearRules" >
           <el-form-item />
 
