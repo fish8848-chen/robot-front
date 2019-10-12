@@ -143,7 +143,7 @@
 			    ]">
             <el-row>
               <el-col :span="5">
-                <el-input-number v-model="setting2.range" :min="0" :max="1"></el-input-number>
+                <el-input-number v-model="setting2.range" :min="0.000000001" :max="1" :step="0.1"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -492,7 +492,6 @@
           amountPrecision:4
         },
         setting1: {
-          able: false,
           gears: 20,
           minWaitTime: 1,
           maxWaitTime: 10000,
@@ -503,8 +502,7 @@
           symbols: ''
         },
         setting2: {
-          able: false,
-          range: '',
+          range: 0.001,
           amountMin: 0,
           amountMax: 100000,
           waitTimeMin: 1,
@@ -520,11 +518,9 @@
           q3: 0,
           currencys: ['1'],
           fee: 0.002,
-          able: false
         },
 
         setting8: {
-          able: false,
           symbol: '',
           traceError: 0,
           amountMin: 0,
@@ -545,7 +541,6 @@
         },
 
         setting4: {
-          able:false,
           symbol: '',
           volMax: 100000,
           volMin: 0,
@@ -565,7 +560,6 @@
           symbols: ''
         },
         setting6: {
-          isAble: false,
           takeProfit: 0,
           stopLoss: 0
         },

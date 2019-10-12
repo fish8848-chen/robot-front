@@ -140,7 +140,7 @@
 			    ]">
             <el-row>
               <el-col :span="5">
-                <el-input-number v-model="setting2.range" :min="0" :max="1"></el-input-number>
+                <el-input-number v-model="setting2.range" :min="0.0000000001" :max="1"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -614,7 +614,7 @@
           symbols: ''
         },
         setting2: {
-          range: '',
+          range: 0.001,
           amountMin: 0,
           amountMax: 100000,
           waitTimeMin: 1,
