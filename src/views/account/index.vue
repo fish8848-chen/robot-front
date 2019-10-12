@@ -87,16 +87,16 @@
         style="width: 400px; margin-left:50px;"
       >
         <el-form-item label="名称" prop="name">
-          <el-input v-model="temp.name"/>
+          <el-input v-model.trim="temp.name"/>
         </el-form-item>
         <el-form-item label="access key" prop="access_key">
-          <el-input v-model="temp.access_key"/>
+          <el-input v-model.trim="temp.access_key"/>
         </el-form-item>
         <el-form-item label="sercet key" prop="secret_key">
-          <el-input v-model="temp.secret_key"/>
+          <el-input v-model.trim="temp.secret_key"/>
         </el-form-item>
         <el-form-item label="备注" prop="info">
-          <el-input v-model="temp.info"/>
+          <el-input v-model.trim="temp.info"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
