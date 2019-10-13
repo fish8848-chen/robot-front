@@ -283,16 +283,6 @@
           </el-form-item>
 
 
-          <el-form-item label="价格区间(两个0默认执行买卖一档区间):" prop="priceMin"  label-width='250px'>
-            <el-row>
-              <el-col>
-                <el-input-number v-model="setting4.priceMin" :min="0" :max="setting4.priceMax"></el-input-number>
-                <span>—</span>
-                <el-input-number v-model="setting4.priceMax" :min="setting4.priceMin" :max="100000"></el-input-number>
-              </el-col>
-            </el-row>
-          </el-form-item>
-
           <el-form-item label="买卖一档价格的差超出区间则不交易:"  prop="thresholdMin"  label-width='240px'  :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
@@ -655,8 +645,6 @@
           symbol: '',
           volMax: 100000,
           volMin: 0,
-          priceMin: 0,
-          priceMax: 100000,
           thresholdMax: 1000,
           thresholdMin: 0
 
