@@ -45,8 +45,6 @@ export default {
   created() {
     const id = this.$route.query.id;
     this.userId = getToken();
-    console.log("userid",this.userId);
-
     this.initWebSocket();
 
   },
@@ -91,9 +89,9 @@ export default {
           this.stompClient.subscribe("/topic/user"+this.userId, msg => {
             console.log('tabledata',this.tableData);
             // 订阅服务端提供的某个topic
-            // if (this.tableData.length >= 100) {
-            //   this.tableData = [];
-            // }
+            if (this.tableData.length >= 500) {
+              this.tableData = [];
+            }
             var json = JSON.parse(msg.body);
             this.tableData.unshift(json);
           });
