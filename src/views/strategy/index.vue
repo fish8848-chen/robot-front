@@ -160,6 +160,14 @@
             </el-row>
           </el-form-item>
 
+          <el-form-item label="价格每一跳精度:" prop="addition" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
+            <el-col :span="7">
+              <el-input-number v-model="setting2.addition" :min="0" :max="1"/>
+              <span style="color: #C03639">*比如btc/usdt价格每一跳精度是0.01</span>
+            </el-col>
+          </el-form-item>
 
           <el-form-item label="交易对选择:" prop="symbol" label-width='140px'  :rules="[
 			      { required: true, message: '请选择交易对'}
@@ -260,7 +268,7 @@
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting3.fee" :min="0" :max="3"/>
+              <el-input-number v-model="setting3.fee" :min="0" :max="1"/>
             </el-col>
           </el-form-item>
 
@@ -349,18 +357,18 @@
 			      { required: true, message: '交易量（买）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.buyNum" :min="0" :max="100000"></el-input-number>
+              <el-input-number v-model="setting7.buyNum" :min="0" :max="100000"></el-input-number>&nbsp
+              <span style="color: #C03639">*默认0不执行买单</span>
             </el-col>
-            <el-col style="color: #C03639">*默认0不执行买单</el-col>
           </el-form-item>
 
           <el-form-item label="交易量（卖）:" prop="sellNum"  label-width='240px'  :rules="[
 			      { required: true, message: '交易量（卖）不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input-number v-model="setting7.sellNum" :min="0" :max="100000"></el-input-number>
+              <el-input-number v-model="setting7.sellNum" :min="0" :max="100000"></el-input-number>&nbsp
+              <span style="color: #C03639">*默认0不执行卖单</span>
             </el-col>
-            <el-col style="color: #C03639">*默认0不执行卖单</el-col>
           </el-form-item>
 
           <el-form-item label="总交易量（买）:" prop="buyTotalNum"  label-width='240px'  :rules="[
@@ -509,6 +517,7 @@
         },
         setting2: {
           range: 0.001,
+          addition: 0.001,
           amountMin: 0,
           amountMax: 100000,
           waitTimeMin: 1,
