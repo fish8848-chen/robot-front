@@ -35,7 +35,7 @@
           >启动</el-button>
           <el-button v-else @click="operatingRobot(scope.row.id,0)" type="warning" size="small">停止</el-button>
           <el-button @click="robotInfo(scope.row)" type="info" size="small">监控日志</el-button>
-          <el-button @click="logsInfo(scope.row.id)" type="warning" size="small">日志记录</el-button>
+          <el-button @click="logsInfo(scope.row.id)" type="warning" size="small">运行结果</el-button>
 <!--          <el-button-->
 <!--            icon="el-icon-info"-->
 <!--            type="info"-->
