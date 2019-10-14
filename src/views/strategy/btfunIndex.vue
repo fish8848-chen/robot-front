@@ -440,10 +440,10 @@
 			      { required: true, message: '跟踪误差不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting8.traceError" placeholder="最好不要超过两个平台手续费之和，不会调节此处可以设0"/>
+              <el-input v-model="setting8.traceError" placeholder="不要超过两个平台手续费之和"/>
             </el-col>
           </el-form-item>
-          <el-form-item label="交易数量最小值:" prop="amountMin"  label-width='240px'  :rules="[
+          <el-form-item label="交易数量范围:" prop="amountMin"  label-width='240px'  :rules="[
 			      { required: true, message: '交易数量不能为空'}
 			    ]">
             <el-row>
@@ -624,7 +624,7 @@
 
         setting8: {
           symbol: '',
-          traceError: 0,
+          traceError: '',
           amountMin: 0,
           amountMax: 100000,
         },
