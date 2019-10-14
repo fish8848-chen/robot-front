@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-table :data="tableData" stripe border height="850" style="width: 100%">
-      <el-table-column prop="robotId" label="机器人编号info" width="200"></el-table-column>
+      <el-table-column prop="robotId" label="机器人编号" width="200"></el-table-column>
       <el-table-column prop="msg" label="日志信息">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
