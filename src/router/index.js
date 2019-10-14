@@ -84,6 +84,11 @@ export const constantRouterMap = [
         hidden: true,
         component: () => import('@/views/robot/info'),
         meta: { title: '运行监控', icon: 'table' }
+      },{
+        path: 'userInfo',
+        name: 'userInfo',
+        component: () => import('@/views/robot/userInfo'),
+        meta: { title: '机器人运行监控', icon: 'table' }
       }
     ]
   },
@@ -145,6 +150,27 @@ export const constantRouterMap = [
         hidden: true,
         component: () => import('@/views/order/profit'),
         meta: { title: '盈亏列表', icon: 'table' }
+      }
+    ]
+  },
+
+
+
+  {
+    path: '/controlLogs',
+    component: Layout,
+    hidden: true,
+    meta: {
+      title: '监控管理',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'List',
+        hidden: true,
+        component: () => import('@/views/msglogs/list'),
+        meta: { title: '监控列表', icon: 'table' }
       }
     ]
   },
