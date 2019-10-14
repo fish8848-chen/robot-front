@@ -52,7 +52,7 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="委托数量:"prop="minEntrustAmount" label-width='140px' :rules="[
+          <el-form-item label="买档委托数量:"prop="minEntrustAmount" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
@@ -60,6 +60,18 @@
                 <el-input-number v-model="setting1.minEntrustAmount" :min="0" :max="setting1.maxEntrustAmount" :step="0.1"></el-input-number>
                 <span>—</span>
                 <el-input-number v-model="setting1.maxEntrustAmount" :min="setting1.minEntrustAmount" :max="1000000" :step="0.1"></el-input-number>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+          <el-form-item label="卖档委托数量:"prop="minEntrustAmount" label-width='140px' :rules="[
+			      { required: true, message: '该项不能为空'}
+			    ]">
+            <el-row>
+              <el-col>
+                <el-input-number v-model="setting1.sellMinEntrustAmount" :min="0" :max="setting1.sellMaxEntrustAmount" :step="0.1"></el-input-number>
+                <span>—</span>
+                <el-input-number v-model="setting1.sellMaxEntrustAmount" :min="setting1.sellMinEntrustAmount" :max="100000" :step="0.1"></el-input-number>
               </el-col>
             </el-row>
           </el-form-item>
@@ -339,6 +351,7 @@
             <el-col :span="6">
               <el-input-number v-model="setting7.buyNum" :min="0" :max="100000"></el-input-number>
             </el-col>
+            <el-col style="color: #C03639">*默认0不执行买单</el-col>
           </el-form-item>
 
           <el-form-item label="交易量（卖）:" prop="sellNum"  label-width='240px'  :rules="[
@@ -347,6 +360,7 @@
             <el-col :span="6">
               <el-input-number v-model="setting7.sellNum" :min="0" :max="100000"></el-input-number>
             </el-col>
+            <el-col style="color: #C03639">*默认0不执行卖单</el-col>
           </el-form-item>
 
           <el-form-item label="总交易量（买）:" prop="buyTotalNum"  label-width='240px'  :rules="[
@@ -487,6 +501,8 @@
           maxWaitTime: 10000,
           minEntrustAmount: 0,
           maxEntrustAmount: 100000,
+          sellMinEntrustAmount: 0,
+          sellMaxEntrustAmount: 100000,
           buyRate: '0.5',
           sellRate: '1.2',
           symbols: ''
