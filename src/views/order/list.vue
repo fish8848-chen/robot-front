@@ -5,11 +5,15 @@
     </div>
     <div style="magin:20px">
       <el-table :data="tableData" stripe border style="width: 100%">
-        <el-table-column prop="id"  label="序号" width="50px"></el-table-column>
-        <el-table-column prop="orderNo"  label="订单id" width="200px"></el-table-column>
+        <el-table-column prop="id"  label="序号" width="70px"></el-table-column>
+        <el-table-column prop="createTime"  label="创建时间" width="200px">
+          <template slot-scope="scope">
+            <span>{{ scope.row.createTime | formatDate }}</span>
+          </template>
+        </el-table-column>
 
         <el-table-column prop="symbol"  label="交易对" width="80px"></el-table-column>
-        <el-table-column prop="accountId"  label="账户id" width="100px"></el-table-column>
+        <el-table-column prop="accountId"  label="账户id" width="70px"></el-table-column>
         <el-table-column prop="robotId" label="机器人id" width="80px"></el-table-column>
         <el-table-column prop="robotName" label="机器人名称" width="200px"></el-table-column>
         <el-table-column prop="strategyId"  label="策略id" width="80px"></el-table-column>
@@ -22,6 +26,7 @@
             <span>{{ scope.row.direction| formatOrderType }}</span>
           </template>
         </el-table-column>
+        <el-table-column prop="orderNo"  label="订单id" width="200px"></el-table-column>
 
 <!--        <el-table-column prop="fieldAmount" label="成交数量" width="80px"></el-table-column>-->
 <!--        <el-table-column prop="fieldCashAmount" label="成交额"></el-table-column>-->
@@ -32,12 +37,6 @@
 <!--            <span>{{ scope.row.orderType | formatOrderType }}</span>-->
 <!--          </template>-->
 <!--        </el-table-column>-->
-
-        <el-table-column prop="createTime"  label="创建时间">
-          <template slot-scope="scope">
-            <span>{{ scope.row.createTime | formatDate }}</span>
-          </template>
-        </el-table-column>
 
 <!--        <el-table-column prop="finishedTime" label="订单完成时间">-->
 <!--          <template slot-scope="scope">-->
