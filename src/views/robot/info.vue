@@ -1,20 +1,20 @@
 <template>
   <div class="app-container">
     <el-table :data="tableData" stripe border height="850" style="width: 100%">
-      <el-table-column prop="robotId" label="机器人编号" width="200"></el-table-column>
+      <el-table-column prop="robotId" label="机器人编号" width="80"></el-table-column>
       <el-table-column prop="msg" label="日志信息">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
-            <p>机器人编号sdsad: {{ scope.row.robotId }}</p>
+            <p>机器人编号: {{ scope.row.robotId }}</p>
             <p>日志信息: {{ scope.row.msg }}</p>
-            <div slot="reference" class="name-wrapper">
+            <div slot="reference" class="name-wrapper" >
               <i class="el-icon-arrow-down"></i>
               <el-tag type="info">{{ scope.row.msg }}</el-tag>
             </div>
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column prop="date" label="时间" width="300">
+      <el-table-column prop="date" label="时间" width="180">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
 
