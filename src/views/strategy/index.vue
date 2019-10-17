@@ -76,7 +76,7 @@
             </el-row>
           </el-form-item>
 
-          <el-form-item label="买N档(相对于买一档)比值:"prop="buyRate" label-width='140px' :rules="[
+          <el-form-item label="N档(相对于一档)比值:"prop="buyRate" label-width='140px' :rules="[
 			      { required: true, message: '该项不能为空'}
 			    ]">
             <el-row>
