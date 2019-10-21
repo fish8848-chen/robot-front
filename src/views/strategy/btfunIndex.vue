@@ -462,7 +462,7 @@
 			      { required: true, message: '跟踪误差不能为空'}
 			    ]">
             <el-col :span="6">
-              <el-input v-model="setting8.traceError" placeholder="不要超过两个平台手续费之和"/>
+              <el-input-number v-model="setting8.traceError" :min="0" ma="10000"/>
             </el-col>
           </el-form-item>
           <el-form-item label="交易数量范围:" prop="amountMin"  label-width='240px'  :rules="[
